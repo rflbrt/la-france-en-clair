@@ -468,7 +468,7 @@ function tile(i, cls, isHome) {
   var c = cls !== undefined ? cls : (i.c || "") + (i.h ? " h2" : ""), compact = isHome && !/h2/.test(c);
   var delta = deltaText(i, h);
   return '<article class="t ' + c + (can ? " can" : "") + '" data-key="' + i.key + '">' +
-    '<span class="k">' + esc(i.n) + '</span><span class="v">' + nb(h.f) + (h.u && h.f.indexOf(h.u) < 0 ? " <small>" + esc(h.u) + "</small>" : "") + "</span>" +
+    '<span class="k"><a class="k-link" href="/chiffres/' + plainText(i.n).replace(/ /g, "-") + '/">' + esc(i.n) + '</a></span><span class="v">' + nb(h.f) + (h.u && h.f.indexOf(h.u) < 0 ? " <small>" + esc(h.u) + "</small>" : "") + "</span>" +
     (s ? '<span class="s">' + nb(s) + "</span>" : "") + (delta ? '<span class="p">' + nb(delta) + "</span>" : "") +
     (i.spark && can && !compact ? spark(i) : "") + (compact ? "" : vizRows(i)) +
     '<span class="foot-t"><a class="src" href="' + sourceUrl(i) + '">' + esc(i.o || "Insee") + ", " + nb(h.w.charAt(0).toLowerCase() + h.w.slice(1)) + "</a>" +

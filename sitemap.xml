@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://statpublique.netlify.app/</loc><lastmod>2026-11-04</lastmod></url>
-  <url><loc>https://statpublique.netlify.app/confidentialite.html</loc><lastmod>2026-11-04</lastmod></url>
-  <url><loc>https://statpublique.netlify.app/cgu.html</loc><lastmod>2026-11-04</lastmod></url>
+  <url><loc>https://statpublique.netlify.app/confidentialite</loc><lastmod>2026-11-04</lastmod></url>
+  <url><loc>https://statpublique.netlify.app/cgu</loc><lastmod>2026-11-04</lastmod></url>
   <url><loc>https://statpublique.netlify.app/chiffres/</loc><lastmod>2026-11-04</lastmod></url>
   <url><loc>https://statpublique.netlify.app/chiffres/60-ans-ou-plus/</loc><lastmod>2026-11-04</lastmod></url>
   <url><loc>https://statpublique.netlify.app/chiffres/allocataires-de-minima-sociaux/</loc><lastmod>2026-11-04</lastmod></url>
@@ -26,6 +26,7 @@
   <url><loc>https://statpublique.netlify.app/chiffres/depenses-de-retraite/</loc><lastmod>2026-11-04</lastmod></url>
   <url><loc>https://statpublique.netlify.app/chiffres/depenses-publiques/</loc><lastmod>2026-11-04</lastmod></url>
   <url><loc>https://statpublique.netlify.app/chiffres/dette-comparaison-europeenne/</loc><lastmod>2026-11-04</lastmod></url>
+  <url><loc>https://statpublique.netlify.app/chiffres/dette-par-habitant/</loc><lastmod>2026-11-04</lastmod></url>
   <url><loc>https://statpublique.netlify.app/chiffres/dette-publique-detenue-a-l-etranger/</loc><lastmod>2026-11-04</lastmod></url>
   <url><loc>https://statpublique.netlify.app/chiffres/dette-publique/</loc><lastmod>2026-11-04</lastmod></url>
   <url><loc>https://statpublique.netlify.app/chiffres/ecart-femmes-hommes/</loc><lastmod>2026-11-04</lastmod></url>
@@ -55,8 +56,10 @@
   <url><loc>https://statpublique.netlify.app/chiffres/pauvrete-des-retraites/</loc><lastmod>2026-11-04</lastmod></url>
   <url><loc>https://statpublique.netlify.app/chiffres/pension-moyenne/</loc><lastmod>2026-11-04</lastmod></url>
   <url><loc>https://statpublique.netlify.app/chiffres/pib-par-habitant-comparaison-europeenne/</loc><lastmod>2026-11-04</lastmod></url>
+  <url><loc>https://statpublique.netlify.app/chiffres/pib-par-habitant/</loc><lastmod>2026-11-04</lastmod></url>
   <url><loc>https://statpublique.netlify.app/chiffres/pib/</loc><lastmod>2026-11-04</lastmod></url>
   <url><loc>https://statpublique.netlify.app/chiffres/poids-de-l-industrie/</loc><lastmod>2026-11-04</lastmod></url>
+  <url><loc>https://statpublique.netlify.app/chiffres/population-active/</loc><lastmod>2026-11-04</lastmod></url>
   <url><loc>https://statpublique.netlify.app/chiffres/population/</loc><lastmod>2026-11-04</lastmod></url>
   <url><loc>https://statpublique.netlify.app/chiffres/pouvoir-d-achat/</loc><lastmod>2026-11-04</lastmod></url>
   <url><loc>https://statpublique.netlify.app/chiffres/prelevements-obligatoires/</loc><lastmod>2026-11-04</lastmod></url>
