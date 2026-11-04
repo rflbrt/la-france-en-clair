@@ -19,11 +19,15 @@ jobs:
       - uses: actions/checkout@v4
       - name: Lire l'Insee et Eurostat
         run: python3 scripts/maj_donnees.py .
+      - name: Mettre à jour les pages par chiffre
+        # Si cette étape échoue, les nouvelles données sont quand même enregistrées.
+        continue-on-error: true
+        run: python3 scripts/pages_build.py .
       - name: Enregistrer si les chiffres ont changé
         run: |
-          if git diff --quiet; then echo "Rien à enregistrer."; exit 0; fi
+          git add data.js index.html chiffres sitemap.xml
+          if git diff --cached --quiet; then echo "Rien à enregistrer."; exit 0; fi
           git config user.name "maj-donnees[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data.js index.html
           git commit -m "Données : mise à jour du $(TZ=Europe/Paris date +%F)"
           git push

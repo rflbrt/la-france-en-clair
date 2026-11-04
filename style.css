@@ -651,7 +651,7 @@ th { color: var(--muted); font-weight: 500; font-size: .84rem; }
 
 /* Pied de page plus compact : le nom à gauche, les liens à droite */
 .foot-panel { gap: 20px; padding: clamp(20px, 2.6vw, 28px) clamp(20px, 3vw, 32px); border-radius: 24px; }
-.foot-main { grid-template-columns: minmax(0, 1fr) auto auto; gap: 20px clamp(32px, 5vw, 64px); align-items: start; }
+.foot-main { grid-template-columns: minmax(0, 1fr) auto auto auto; gap: 20px clamp(32px, 5vw, 64px); align-items: start; }
 .foot-brand { gap: 6px; }
 .foot .foot-word { font-size: 8.4cqi; }
 .foot-brand p { max-width: none; font-size: .98rem; font-weight: 400; letter-spacing: 0; line-height: 1.35; color: #D4D4D4; }
@@ -728,3 +728,16 @@ a, button, select, input, summary { -webkit-tap-highlight-color: transparent; to
 .ask-x { width: 30px; height: 30px; border: 0; border-radius: 50%; background: transparent; color: #FFFFFF; font-size: 1.2rem; line-height: 1; cursor: pointer; }
 .ask-x:hover { background: rgba(255, 255, 255, .14); }
 @media (max-width: 720px) { .ask, .ask-btn { width: 100%; } .ask-btn { justify-content: center; } }
+
+/* Pages par chiffre */
+.crumbs { color: var(--muted); font-size: .88rem; }
+.crumbs a { color: inherit; }
+.chiffre { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; }
+.chiffre strong { font-size: clamp(2.4rem, 7vw, 3.6rem); font-weight: 600; letter-spacing: -.03em; line-height: 1.1; }
+.chiffre span { color: var(--muted); }
+.chiffre-page .note { color: var(--muted); font-size: .88rem; }
+.chiffre-page .table { overflow-x: auto; max-width: 46em; }
+.chiffre-page table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.chiffre-page th, .chiffre-page td { padding: 8px 12px 8px 0; border-block-end: 1px solid var(--line); text-align: start; }
+.chiffre-page th { color: var(--muted); font-weight: 500; }
+.chiffre-page .cta { font-weight: 600; }
