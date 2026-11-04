@@ -749,3 +749,8 @@ a, button, select, input, summary { -webkit-tap-highlight-color: transparent; to
 .key-links h2 { font-size: 1.25rem; letter-spacing: -.02em; }
 .key-links ul { display: flex; flex-wrap: wrap; gap: 8px 20px; margin: 0; padding: 0; list-style: none; }
 .key-links a { color: var(--ink); }
+
+/* Choix sur la mesure d'audience */
+.foot-consent { padding: 0; border: 0; background: none; color: inherit; font: inherit; text-decoration: underline; cursor: pointer; }
+.foot .foot-consent { text-decoration: inherit; }
+.foot .foot-consent:hover { text-decoration: underline; }

@@ -3,7 +3,7 @@
 // Pour activer la mesure d'audience, renseignez ici l'outil choisi, par exemple GoatCounter :
 // var ANALYTICS = { src: "https://gc.zgo.at/count.js", attrs: { "data-goatcounter": "https://VOTRE-CODE.goatcounter.com/count" } };
 // Tant que src est vide, aucun outil n'est chargé.
-var ANALYTICS = { src: "", attrs: {} };
+var ANALYTICS = { src: "https://gc.zgo.at/count.js", attrs: { "data-goatcounter": "https://rflbrt.goatcounter.com/count" } };
 
 (function () {
   var KEY = "statpublique-consent", SIX_MONTHS = 183 * 24 * 3600 * 1000;
@@ -28,7 +28,7 @@ var ANALYTICS = { src: "", attrs: {} };
     if (document.getElementById("consent")) return;
     var b = document.createElement("section");
     b.id = "consent"; b.className = "consent"; b.setAttribute("aria-label", "Cookies et mesure d'audience");
-    b.innerHTML = '<p>Acceptez-vous une mesure d\'audience pour nous aider à améliorer le site ? Aucune publicité, et vous pouvez changer d\'avis à tout moment. <a href="confidentialite.html">En savoir plus</a></p>' +
+    b.innerHTML = '<p>Acceptez-vous une mesure d\'audience pour nous aider à améliorer le site ? Aucune publicité, et vous pouvez changer d\'avis à tout moment. <a href="/confidentialite">En savoir plus</a></p>' +
       '<div><button type="button" data-choice="no">Refuser</button><button type="button" data-choice="yes">Accepter</button></div>';
     b.addEventListener("click", function (e) {
       var c = e.target.getAttribute("data-choice");
