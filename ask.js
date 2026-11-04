@@ -957,7 +957,7 @@
     if (c.hidden) { c.hidden = false; motion(c, RISE, { duration: 240 }); }
   }
   function panelMsg(html) { document.getElementById("ask-msg").innerHTML = html; }
-  function closePanel() { if (hearing) hearing.abort(); document.getElementById("ask-panel").hidden = true; document.getElementById("ask-open").setAttribute("aria-expanded", "false"); }
+  function closePanel() { if (hearing) hearing.abort(); if (voiceRec) { voiceStage = "cancel"; stopVoiceRec(); } document.getElementById("ask-panel").hidden = true; document.getElementById("ask-open").setAttribute("aria-expanded", "false"); }
   function sourceLine(ent) { return '<span class="ask-src">Source : ' + esc(ent.item.o || "Insee") + "</span>"; }
   function ignoredNote(p) {
     var bits = [];
@@ -1072,8 +1072,15 @@
     panelMsg("");
     var p = parse(text);
     if (/^\s*pourquoi\b/i.test(text)) p.whyNote = 1;
-    if (run(p)) { var c = document.getElementById("ask-card"); c.dataset.q = text; }
-    if (byVoice) sayAnswer();
+    var shown = run(p), c = document.getElementById("ask-card");
+    if (shown) c.dataset.q = text;
+    // À la voix, on montre ce qui a été compris : une erreur de transcription se voit tout de suite.
+    if (byVoice) {
+      var heard = "J'ai entendu : « " + esc(text.trim()) + " ».";
+      sayAnswer();
+      if (shown) c.querySelector(".ask-card-body").insertAdjacentHTML("afterbegin", '<span class="ask-note ask-heard">' + heard + "</span>");
+      else document.getElementById("ask-msg").insertAdjacentHTML("afterbegin", '<p class="ask-miss">' + heard + "</p>");
+    }
   }
 
   // --- Voix : on parle au bouton micro, et la réponse est lue à voix haute dans ce cas seulement.
@@ -1119,8 +1126,125 @@
     if (code === "network") return "Le service de reconnaissance vocale de votre navigateur ne répond pas. Essayez Chrome ou Safari. (code : " + code + ")";
     return "Le micro ne répond pas dans ce navigateur. Essayez Chrome ou Safari, ou écrivez votre question. (code : " + code + ")";
   }
+  // --- Voix sur l'appareil : quand le navigateur ne sait pas transcrire (Arc, Firefox…), un petit modèle tourne ici même.
+  var VOICE_KEY = "statpublique-voix", voiceWorker = null, voiceReady = false, voiceRec = null, voiceStage = "idle", voiceWaiting = null, voiceGuard = null;
+  function canRecord() { return !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia && window.MediaRecorder && window.Worker && (window.AudioContext || window.webkitAudioContext)); }
+  function voiceFlag(v) { try { if (v) localStorage.setItem(VOICE_KEY, v); return localStorage.getItem(VOICE_KEY); } catch (err) { return null; } }
+  function offerLocalVoice(why) {
+    panelMsg('<p class="ask-miss">' + esc(why) + " Je peux transcrire directement sur cet appareil : votre voix n'est envoyée nulle part. Il faut télécharger une fois un modèle d'environ 80 Mo, de préférence en Wi-Fi.</p>" + '<div class="ask-chips"><button type="button" class="ask-chip" data-voice-ok>Activer la voix</button></div>');
+  }
+  function noVoice(detail) {
+    voiceStage = "idle"; micState(false);
+    panelMsg('<p class="ask-miss">La voix n\'a pas pu démarrer sur ce navigateur. Écrivez votre question, ou utilisez la dictée de votre clavier.' + (detail ? " (" + esc(detail) + ")" : "") + "</p>");
+  }
+  function startVoiceWorker() {
+    if (voiceWorker) return voiceWorker;
+    try { voiceWorker = new Worker("ask-voice-worker.js?v=1", { type: "module" }); } catch (err) { noVoice("module"); return null; }
+    voiceWorker.onerror = function (e) { voiceWorker = null; voiceReady = false; noVoice(e.message || "worker"); };
+    voiceWorker.onmessage = function (e) {
+      var d = e.data;
+      if (d.type === "progress") panelMsg('<p class="ask-miss">Téléchargement de la voix : ' + d.percent + " %</p>");
+      else if (d.type === "ready") { voiceReady = true; voiceFlag("ok"); panelMsg(""); if (voiceWaiting) { var go = voiceWaiting; voiceWaiting = null; go(); } }
+      else if (d.type === "error") { voiceStage = "idle"; voiceReady = false; voiceWaiting = null; noVoice(d.message); }
+      else if (d.type === "text") finishTranscript(d.text);
+    };
+    return voiceWorker;
+  }
+  function ensureVoiceModel(next) {
+    if (voiceReady) return next();
+    voiceWaiting = next;
+    if (!startVoiceWorker()) return;
+    panelMsg('<p class="ask-miss">Préparation de la voix…</p>');
+    voiceWorker.postMessage({ type: "load" });
+  }
+  // Erreurs fréquentes du modèle sur le vocabulaire du site.
+  var VOICE_FIX = [[/\bd['’]être\b/gi, "dette"], [/\bde dette\b/gi, "dette"], [/\bsmic ?net\b|\bsmiknet\b|\bsmique ?net\b/gi, "smic net"], [/\bsmique\b/gi, "smic"], [/\bp\.?i\.?b\.?\b/gi, "PIB"], [/\bchaumage\b/gi, "chômage"], [/\bchaumeurs?\b/gi, "chômeurs"], [/\bsous-mage\b/gi, "chômage"]];
+  function voiceFix(text) { VOICE_FIX.forEach(function (f) { text = text.replace(f[0], f[1]); }); return text; }
+  function finishTranscript(raw) {
+    clearTimeout(voiceGuard);
+    if (voiceStage !== "transcribing") return;
+    voiceStage = "idle"; micState(false); panelMsg("");
+    // Le modèle invente parfois un générique de sous-titres sur un silence.
+    var text = String(raw).replace(/\[[^\]]*\]|\([^)]*\)/g, " ").replace(/\s+/g, " ").trim();
+    if (!text || /sous-titr|amara\.org|^merci\.?$/i.test(text)) { panelMsg('<p class="ask-miss">' + micHelp("no-speech") + "</p>"); return; }
+    text = voiceFix(text);
+    input.value = text;
+    submit(text, true);
+  }
+  function resample(blob) {
+    var Ctx = window.AudioContext || window.webkitAudioContext, ctx = new Ctx();
+    return blob.arrayBuffer().then(function (buf) {
+      return new Promise(function (ok, no) { ctx.decodeAudioData(buf, ok, no); });
+    }).then(function (audio) {
+      var Off = window.OfflineAudioContext || window.webkitOfflineAudioContext, off = new Off(1, Math.ceil(audio.duration * 16000), 16000), src = off.createBufferSource();
+      src.buffer = audio; src.connect(off.destination); src.start(0);
+      return off.startRendering();
+    }).then(function (out) {
+      if (ctx.close) ctx.close();
+      return out.getChannelData(0);
+    });
+  }
+  function stopVoiceRec() { if (voiceRec && voiceRec.state === "recording") voiceRec.stop(); }
+  function recordLocal() {
+    voiceStage = "listening"; micState(true); panelMsg("");
+    navigator.mediaDevices.getUserMedia({ audio: true }).then(function (stream) {
+      var chunks = [], Ctx = window.AudioContext || window.webkitAudioContext, meter = new Ctx(), an = meter.createAnalyser(), began = Date.now(), lastLoud = 0, data = new Uint8Array(512), timer;
+      an.fftSize = 512;
+      meter.createMediaStreamSource(stream).connect(an);
+      if (meter.resume) meter.resume();
+      voiceRec = new MediaRecorder(stream);
+      voiceRec.ondataavailable = function (e) { if (e.data.size) chunks.push(e.data); };
+      voiceRec.onstop = function () {
+        clearInterval(timer);
+        stream.getTracks().forEach(function (t) { t.stop(); });
+        if (meter.close) meter.close();
+        var heard = lastLoud > 0;
+        voiceRec = null;
+        if (voiceStage === "cancel") { voiceStage = "idle"; micState(false); return; }
+        if (!heard) { voiceStage = "idle"; micState(false); panelMsg('<p class="ask-miss">' + micHelp("no-speech") + "</p>"); return; }
+        voiceStage = "transcribing";
+        panelMsg('<p class="ask-miss">Je transcris…</p>');
+        // Sur un appareil trop lent, on le dit au lieu de rester bloqué.
+        voiceGuard = setTimeout(function () { if (voiceStage === "transcribing") noVoice("trop lent"); }, 90000);
+        resample(new Blob(chunks, { type: chunks[0] && chunks[0].type || "" })).then(function (audio) {
+          voiceWorker.postMessage({ type: "transcribe", audio: audio }, [audio.buffer]);
+        }).catch(function () { noVoice("audio"); });
+      };
+      voiceRec.start();
+      // Arrêt tout seul : après un silence, ou au bout de 12 secondes.
+      timer = setInterval(function () {
+        an.getByteTimeDomainData(data);
+        var peak = 0;
+        for (var i = 0; i < data.length; i++) peak = Math.max(peak, Math.abs(data[i] - 128));
+        var now = Date.now();
+        if (peak > 10) lastLoud = now;
+        if ((lastLoud && now - lastLoud > 1400) || now - began > 12000 || (!lastLoud && now - began > 7000)) stopVoiceRec();
+      }, 100);
+    }).catch(function (err) {
+      voiceStage = "idle"; micState(false);
+      var denied = err && (err.name === "NotAllowedError" || err.name === "SecurityError");
+      panelMsg('<p class="ask-miss">' + micHelp(denied ? "not-allowed" : err && err.name === "NotFoundError" ? "audio-capture" : "start") + "</p>");
+    });
+  }
+  function listenLocal() {
+    if (voiceStage === "listening") { stopVoiceRec(); return; }
+    if (voiceStage !== "idle") return;
+    hush(); input.value = "";
+    if (!voiceReady && voiceFlag() !== "ok") { offerLocalVoice("Votre navigateur ne sait pas transcrire la voix."); return; }
+    voiceStage = "loading";
+    ensureVoiceModel(recordLocal);
+  }
+
+  // Ces erreurs viennent du navigateur, pas de la personne : la voix sur l'appareil prend le relais.
+  var BROKEN = { network: 1, "service-not-allowed": 1, "language-not-supported": 1, timeout: 1 };
+  function switchToLocal(code) {
+    voiceFlag(voiceFlag() === "ok" ? "ok" : "local");
+    if (canRecord()) offerLocalVoice("La reconnaissance vocale de ce navigateur ne répond pas.");
+    else panelMsg('<p class="ask-miss">' + micHelp(code) + "</p>");
+  }
   function listen() {
-    var Rec = recognizer();
+    var Rec = recognizer(), mode = voiceFlag();
+    if (canRecord() && (!Rec || mode === "ok" || mode === "local" || voiceStage !== "idle")) { listenLocal(); return; }
     if (!Rec) return;
     if (hearing) { hearing.stop(); return; }
     hush();
@@ -1144,12 +1268,13 @@
       try { r.abort(); } catch (err) {}
       hearing = null;
       micState(false);
-      panelMsg('<p class="ask-miss">' + micHelp("timeout") + "</p>");
+      switchToLocal("timeout");
     }, 4000);
     r.onstart = function () { clearTimeout(watchdog); };
     r.onerror = function (e) {
       clearTimeout(watchdog);
       failed = true;
+      if (BROKEN[e.error]) { switchToLocal(e.error); return; }
       var m = e.error === "aborted" ? "" : micHelp(e.error);
       if (m) panelMsg('<p class="ask-miss">' + m + "</p>");
     };
@@ -1163,11 +1288,12 @@
     micState(true);
     try { r.start(); } catch (err) { clearTimeout(watchdog); hearing = null; micState(false); panelMsg('<p class="ask-miss">' + micHelp(err && err.name || "start") + "</p>"); }
   }
-  if (!recognizer()) mic.hidden = true;
+  if (!recognizer() && !canRecord()) mic.hidden = true;
   mic.addEventListener("click", listen);
   open.addEventListener("click", function () { if (panel.hidden) show(); else closePanel(); });
   document.getElementById("ask-form").addEventListener("submit", function (e) { e.preventDefault(); submit(input.value); });
   panel.addEventListener("click", function (e) {
+    if (e.target.closest("[data-voice-ok]")) { voiceStage = "loading"; ensureVoiceModel(recordLocal); return; }
     var b = e.target.closest("[data-q]");
     if (b) { input.value = b.dataset.q; submit(b.dataset.q); }
   });
