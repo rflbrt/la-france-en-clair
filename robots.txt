@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://statpublique.netlify.app/sitemap.xml

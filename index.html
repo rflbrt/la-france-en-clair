@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+<title>StatPublique : mieux comprendre la France, chiffre par chiffre</title>
+<meta name="description" content="Dette, emploi, prix, immigration, retraites : les statistiques publiques sur la France, expliquées simplement, avec leur source et leur historique.">
+<link rel="canonical" href="https://statpublique.netlify.app/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="StatPublique">
+<meta property="og:title" content="StatPublique : mieux comprendre la France, chiffre par chiffre">
+<meta property="og:description" content="Dette, emploi, prix, immigration, retraites : les statistiques publiques sur la France, expliquées simplement, avec leur source et leur historique.">
+<meta property="og:url" content="https://statpublique.netlify.app/">
+<meta property="og:image" content="https://statpublique.netlify.app/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="StatPublique : mieux comprendre la France, chiffre par chiffre.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="stylesheet" href="style.css?v=47">
+<script src="data.js?v=48" defer></script>
+<script src="app.js?v=48" defer></script>
+<script src="ask.js?v=47" defer></script>
+<script src="site.js?v=47" defer></script>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="i-ask" viewBox="0 0 24 24"><path d="M12 3l1.900 5.100L19 10l-5.100 1.900L12 17l-1.900-5.100L5 10l5.100-1.900zM19 16l.8 2.200L22 19l-2.200.8L19 22l-.8-2.200L16 19l2.200-.8z"/></symbol>
+  <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.500 11.500a6.500 6.500 0 0 0 13 0M12 18v3"/></symbol>
+  <symbol id="i-essentiel" viewBox="0 0 24 24"><path d="M12 3l2.600 5.800 6.400.7-4.800 4.300 1.300 6.200L12 16.900 6.500 20l1.300-6.200L3 9.500l6.400-.7z"/></symbol>
+  <symbol id="i-finances" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15.500 8.500a4.500 4.500 0 1 0 0 7M7 10.700h6M7 13.300h6"/></symbol>
+  <symbol id="i-activite" viewBox="0 0 24 24"><path d="M3 21V11l6 4v-4l6 4V4h6v17zM8 18h1M13 18h1M18 18h.5"/></symbol>
+  <symbol id="i-menages" viewBox="0 0 24 24"><path d="M3 4h2.200l2.400 11h10l2.200-7.500H6"/><circle cx="9" cy="19.500" r="1.500"/><circle cx="16.500" cy="19.500" r="1.500"/></symbol>
+  <symbol id="i-population" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.200"/><path d="M3 20c0-3.500 2.700-6 6-6s6 2.500 6 6M16 5a3.200 3.200 0 0 1 0 6M18 14.400c1.900.8 3 2.900 3 5.600"/></symbol>
+  <symbol id="i-retraites" viewBox="0 0 24 24"><path d="M7 3h10M7 21h10M8 3v4c0 2 4 3.500 4 5s-4 3-4 5v4M16 3v4c0 2-4 3.500-4 5s4 3 4 5v4"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M16.500 16.500L21 21"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+</defs></svg>
+<header class="head">
+  <div class="in">
+    <a class="brand" href="#accueil" id="brand" aria-label="StatPublique, accueil">StatPublique</a>
+    <nav class="nav" aria-label="Menu"><a href="#comparer"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M8 21h8M5 6.500h14M5 6.500 2 14a3.200 3.200 0 0 0 6 0zM19 6.500 16 14a3.200 3.200 0 0 0 6 0z"/></svg>Comparer</a></nav>
+  </div>
+</header>
+
+<main class="in home" data-page="accueil">
+  <div class="top">
+    <section class="hero">
+      <h1>Mieux comprendre la&nbsp;France, chiffre par chiffre.</h1>
+      <p>Un chiffre entendu quelque part ? Vérifiez-le ici, à la source.</p>
+      <div class="find">
+        <div class="search" id="search" role="search">
+          <label class="vh" for="q">Rechercher un chiffre</label>
+          <svg class="ic" aria-hidden="true"><use href="#i-search"/></svg>
+          <input id="q" type="search" placeholder="Rechercher : dette, immigration, retraites, Smic…" autocomplete="off" autocapitalize="off" spellcheck="false" role="combobox" aria-expanded="false" aria-controls="q-results" aria-autocomplete="list">
+          <div class="results" id="q-results" role="listbox" aria-label="Résultats de la recherche" hidden></div>
+        </div>
+        <div class="ask">
+          <button type="button" class="ask-btn" id="ask-open" aria-expanded="false" aria-controls="ask-panel"><svg class="ic" aria-hidden="true"><use href="#i-ask"/></svg>Demander</button>
+          <div class="ask-panel" id="ask-panel" hidden>
+            <form id="ask-form">
+              <label class="vh" for="ask-q">Posez votre question</label>
+              <input id="ask-q" type="text" placeholder="Posez votre question" autocomplete="off" autocapitalize="off" spellcheck="false">
+              <button type="button" class="ask-mic" id="ask-mic" aria-label="Parler" aria-pressed="false"><svg class="ic" aria-hidden="true"><use href="#i-mic"/></svg></button>
+              <button type="submit" class="ask-send" aria-label="Envoyer"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+            </form>
+            <div id="ask-msg" aria-live="polite"></div>
+            <div class="ask-chips">
+              <button type="button" class="ask-chip" data-q="Inflation en 2015">Inflation en 2015</button>
+              <button type="button" class="ask-chip" data-q="Dette en 2010 et en 2020">Dette en 2010 et en 2020</button>
+              <button type="button" class="ask-chip" data-q="Comparer le Smic et la pension depuis 2015">Smic et pension depuis 2015</button>
+              <button type="button" class="ask-chip" data-q="Pension de 2015 et Smic net de 2023">Pension de 2015 et Smic net de 2023</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stage" id="stage" aria-label="Chiffres par thème">
+      <nav class="tabs" aria-label="Thèmes"><div id="tabs"></div></nav>
+      <p class="hint">Choisissez un thème, puis un chiffre pour voir son historique et comparer deux points.</p>
+      <div id="panels">
+        <section class="panel" data-panel="essentiel"><div class="bento" id="bento-essentiel"></div></section>
+        <section class="panel" data-panel="comparer" aria-label="Comparer" hidden>
+          <div class="cmp">
+            <div class="cmp-head">
+              <h2>Comparer</h2>
+              <p id="cmp-lede">Mettez plusieurs chiffres sur la même ligne de départ et voyez lequel a le plus bougé.</p>
+            </div>
+            <div class="seg cmp-view" id="cmp-view" role="group" aria-label="Façon de comparer"><button type="button" data-view="evolution" aria-pressed="true">L'évolution</button><button type="button" data-view="dates" aria-pressed="false">À des dates choisies</button></div>
+            <div class="cmp-presets" id="cmp-presets" role="group" aria-label="Idées de comparaison"></div>
+            <div class="cmp-picker">
+              <div class="cmp-chips" id="cmp-chips"></div>
+              <div class="search cmp-search">
+                <label class="vh" for="cmp-q">Ajouter un chiffre à comparer</label>
+                <svg class="ic" aria-hidden="true"><use href="#i-search"/></svg>
+                <input id="cmp-q" type="search" autocomplete="off" autocapitalize="off" spellcheck="false" role="combobox" aria-expanded="false" aria-controls="cmp-list" aria-autocomplete="list">
+                <div class="results" id="cmp-list" role="listbox" aria-label="Chiffres à comparer" hidden></div>
+              </div>
+            </div>
+            <div class="dt" id="cmp-dwrap" hidden>
+              <div class="dt-cards" id="cmp-dated"></div>
+              <div class="cmp-verdict dt-result" id="cmp-dresult" aria-live="polite"></div>
+              <div class="dt-actions"><button type="button" class="cmp-toggle" id="cmp-dreal" aria-pressed="false" hidden>Tout en euros</button><button type="button" class="cmp-toggle" id="cmp-dcopy">Copier le lien</button></div>
+              <div class="cmp-notes" id="cmp-dnotes"></div>
+            </div>
+            <p class="cmp-empty" id="cmp-empty" hidden></p>
+            <div class="cmp-controls" id="cmp-controls" hidden>
+              <div class="cmp-period">
+                <label for="cmp-de">De</label><select id="cmp-de"></select>
+                <label for="cmp-a">à</label><select id="cmp-a"></select>
+                <div class="seg" id="cmp-quick"><button type="button" data-years="5">5 ans</button><button type="button" data-years="10">10 ans</button><button type="button" data-years="20">20 ans</button><button type="button" data-years="0">Tout</button></div>
+              </div>
+              <div class="cmp-toggles">
+                <div class="seg" id="cmp-mode"><button type="button" data-mode="index">Base 100</button><button type="button" data-mode="values">Valeurs</button></div>
+                <button type="button" class="cmp-toggle" id="cmp-prix" aria-pressed="false">Afficher les prix</button>
+                <button type="button" class="cmp-toggle" id="cmp-real" aria-pressed="false">Retirer l'inflation</button>
+              </div>
+            </div>
+            <div id="cmp-result" hidden>
+              <div class="cmp-verdict" id="cmp-verdict" aria-live="polite"></div>
+              <div class="cmp-grid">
+                <div class="cmp-chart">
+                  <p class="cmp-axis" id="cmp-axis"></p>
+                  <div class="plot" id="cmp-plot" tabindex="0" aria-label="Graphique de comparaison. Flèches gauche et droite pour parcourir les années."></div>
+                  <div class="legend chart-legend" id="cmp-legend"></div>
+                </div>
+                <ol class="cmp-ranking" id="cmp-rank" aria-label="Classement"></ol>
+              </div>
+              <div class="cmp-notes" id="cmp-notes"></div>
+              <div class="cmp-foot">
+                <details class="chart-values"><summary>Voir les valeurs</summary><div class="scroll"><table class="chart-table" id="cmp-table"></table></div></details>
+                <button type="button" class="cmp-toggle" id="cmp-copy">Copier le lien</button>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel" data-panel="sources" aria-label="Sources" hidden>
+          <div class="srcs">
+            <div class="cmp-head">
+              <h2>D'où viennent les chiffres</h2>
+              <p>La plupart des chiffres viennent de l'Insee, sous Licence Ouverte 2.0. Les chiffres connectés sont cités ainsi : Insee, BDM, avec la date d'extraction indiquée sur chaque graphique.</p>
+              <p>Les autres viennent d'organismes publics français : le ministère de l'Intérieur, la Drees et la Banque de France. Les comparaisons avec l'Union européenne viennent d'Eurostat, l'office statistique européen. Chaque tuile nomme sa source.</p>
+            </div>
+            <ul class="src-steps">
+              <li><b>Lu à la source</b><span>Les chiffres connectés viennent directement des services de l'Insee et d'Eurostat.</span></li>
+              <li><b>Toujours daté</b><span>Chaque chiffre indique sa période et renvoie vers la page d'origine.</span></li>
+              <li><b>Calculs signalés</b><span>Quand ce site fait un calcul lui-même, il le dit à côté du chiffre.</span></li>
+            </ul>
+            <div class="src-orgs" id="src-orgs"></div>
+            <div class="src-methods">
+              <h3>Comment c'est fait</h3>
+              <details class="src-method"><summary>Comment le site s'actualise</summary><div><p>La plupart des chiffres sont lus directement dans l'API publique de l'Insee, à chaque visite puis toutes les 30 minutes, et ceux d'Eurostat dans son API publique, à chaque visite. Ceux que l'API ne fournit pas (déficit annuel, pauvreté, salaires, pensions) et ceux des autres organismes publics sont mis à jour à la main. En cas de coupure, le site affiche la dernière copie enregistrée, actualisée automatiquement chaque semaine.</p></div></details>
+          <details class="src-method"><summary>Un même chiffre, plusieurs versions</summary><div><p>La pension moyenne est de 1&nbsp;752&nbsp;€ bruts ou de 1&nbsp;626&nbsp;€ nets. Le second chiffre retire les prélèvements sociaux. Avant de comparer deux chiffres, il faut vérifier qu'ils mesurent la même chose, sur la même période et le même territoire.</p></div></details>
+          <details class="src-method"><summary>Comment répond le bouton Demander</summary><div><p>Il repère dans votre question le chiffre et la date, puis répond avec les données déjà affichées sur le site. Une question écrite reste dans votre navigateur. Si vous utilisez le micro, votre voix est transcrite par le service de reconnaissance de votre navigateur, qui peut l'envoyer à son éditeur, comme Google ou Apple. Si le chiffre n'est pas sur le site, il le dit au lieu d'inventer une réponse.</p></div></details>
+          <details class="src-method"><summary>Calculs faits par ce site</summary><div><p>Comparaison sur les graphiques et somme d'hier en euros d'aujourd'hui : l'écart, l'évolution et le multiplicateur sont calculés par ce site. L'effet des prix utilise le coefficient de transformation de l'euro publié par l'Insee ; pour une période plus courte que l'année, il reste approximatif.</p>
+  <p>Dette par habitant : dette publique divisée par la population. Les deux chiffres ne portent pas exactement sur la même date.</p>
+  <p>Charge d'intérêts : somme des quatre derniers trimestres. Elle peut différer un peu du chiffre annuel officiel.</p>
+  <p>Consommation, investissement et pouvoir d'achat : évolution sur un trimestre, calculée à partir des séries de l'Insee. Épargne, âges, poids de l'industrie et part du nucléaire : part calculée à partir de deux séries. Solde extérieur : somme des quatre derniers trimestres.</p></div></details>
+            </div>
+            <div class="src-all" id="src-all">
+              <div class="src-all-head">
+                <h3>Tous les chiffres</h3>
+                <span id="src-count"></span>
+                <button type="button" class="cmp-toggle" id="src-reset" hidden>Tout afficher</button>
+              </div>
+              <div class="search src-search">
+                <label class="vh" for="src-q">Filtrer les chiffres</label>
+                <svg class="ic" aria-hidden="true"><use href="#i-search"/></svg>
+                <input id="src-q" type="search" placeholder="Filtrer : dette, Eurostat, Insee…" autocomplete="off" autocapitalize="off" spellcheck="false">
+              </div>
+              <div id="src-list"></div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+  </div>
+
+  <section class="feed" aria-labelledby="feed-title">
+    <div class="sec-head">
+      <h2 id="feed-title">Les derniers chiffres</h2>
+      <div class="seg" id="feed-view" role="group" aria-label="Type de nouveautés"><button type="button" data-feed="maj" aria-pressed="true">Mis à jour</button><button type="button" data-feed="ajout" aria-pressed="false">Ajoutés au site</button></div>
+    </div>
+    <div class="feed-list" id="feed-list"></div>
+    <div class="feed-foot"><p id="feed-note"></p><button type="button" class="cmp-toggle" id="feed-more">Voir plus</button></div>
+  </section>
+
+  <section class="play" aria-label="Jeux">
+    <div class="play-col">
+    <div class="play-card">
+      <div class="sec-head">
+        <h2>Plus ou moins ?</h2>
+        <p class="game-score">Série <b id="game-streak">0</b> · Record <b id="game-best">0</b></p>
+      </div>
+      <div id="game"></div>
+    </div>
+    <div class="play-card rnd-card">
+      <div class="sec-head">
+        <h2><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 9h.01M15 9h.01M12 12h.01M9 15h.01M15 15h.01"/></svg>Un chiffre au hasard</h2>
+      </div>
+      <div class="rnd" id="rnd" aria-live="polite"></div>
+    </div>
+    </div>
+    <div class="play-card">
+      <div class="sec-head">
+        <h2>Votre année</h2>
+        <label class="year-label"><span class="vh">Choisissez une année</span><select id="year-pick"></select></label>
+      </div>
+      <p class="year-lede">Choisissez une année, par exemple celle de votre naissance&nbsp;: voici ce qui a changé depuis.</p>
+      <div class="year-cards" id="year-cards"></div>
+      <p class="year-note" id="year-note"></p>
+    </div>
+  </section>
+</main>
+
+<footer class="foot"><div class="in"><div class="foot-panel">
+  <div class="foot-main">
+    <div class="foot-brand" id="qui">
+      <a class="foot-word" href="#accueil">StatPublique</a>
+      <p>Les statistiques sur la France, expliquées simplement.</p>
+      <p class="foot-small">Site indépendant et non officiel, sans lien avec l'Insee.</p>
+    </div>
+    <nav class="foot-col" aria-label="Outils"><h2>Outils</h2><ul><li><a href="#comparer">Comparer</a></li><li><a href="#sources">Sources</a></li></ul></nav>
+    <nav class="foot-col" aria-label="Informations légales"><h2>Informations</h2><ul><li><a href="confidentialite.html">Confidentialité</a></li><li><a href="cgu.html">CGU et mentions légales</a></li></ul></nav>
+  </div>
+  <div class="foot-bottom"><ul class="foot-chips"><li>Pas d'inscription</li><li>Pas de cookies</li><li>Toutes les sources indiquées</li></ul><span class="live" id="live" data-state="wait">Connexion à l'Insee…</span></div>
+</div></div></footer>
+<div class="ask-card" id="ask-card" role="status" hidden>
+  <div class="ask-card-body"></div>
+  <div class="ask-card-foot"><button type="button" class="ask-again" data-again>Autre question</button><button type="button" class="ask-x" data-close aria-label="Fermer">×</button></div>
+</div>
+</body>
+</html>
