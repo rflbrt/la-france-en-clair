@@ -1,3 +1,10 @@
 # Site statique : aucune compilation, on publie le dossier tel quel
 [build]
   publish = "."
+
+# Compteur public : Netlify lit le total chez GoatCounter, le navigateur du visiteur ne contacte que ce site.
+[[redirects]]
+  from = "/compteur.json"
+  to = "https://rflbrt.goatcounter.com/counter/TOTAL.json"
+  status = 200
+  force = true

@@ -22,8 +22,8 @@
 <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#FFFFFF">
-<link rel="stylesheet" href="style.css?v=50">
-<script src="site.js?v=48" defer></script>
+<link rel="stylesheet" href="style.css?v=51">
+<script src="site.js?v=49" defer></script>
 </head>
 <body>
 
@@ -47,7 +47,7 @@
     <li><b>Appels à Eurostat.</b> Pour les comparaisons européennes, votre navigateur interroge directement ec.europa.eu. La Commission européenne reçoit donc votre adresse IP et traite cette information en tant que responsable distinct.</li>
     <li><b>Micro de l'assistant.</b> Le micro ne s'active que si vous appuyez sur son bouton, et votre navigateur vous demande d'abord l'autorisation. Votre voix est transcrite par le service de reconnaissance de votre navigateur, qui peut l'envoyer à son éditeur, comme Google ou Apple, en tant que responsable distinct. StatPublique ne reçoit ni n'enregistre votre voix ni vos questions.</li>
     <li><b>Cookies.</b> Le site ne dépose aucun cookie. Votre choix sur la mesure d'audience reste dans votre navigateur pendant six mois.</li>
-    <li><b>Mesure d'audience.</b> Si vous l'acceptez, le site utilise GoatCounter pour compter les visites : pages vues, site d'origine, pays, navigateur et taille d'écran. Ce service externe reçoit techniquement votre visite et votre adresse IP, ne dépose pas de cookie et indique ne conserver que des statistiques agrégées. Base légale : votre consentement. Sans votre accord, rien n'est chargé. Vous pouvez changer d'avis à tout moment : <button type="button" class="foot-consent" data-cookies>modifier mon choix</button>.</li>
+    <li><b>Mesure d'audience.</b> Si vous l'acceptez, le site utilise GoatCounter pour compter les visites : pages vues, site d'origine, pays, navigateur et taille d'écran. Ce service externe reçoit techniquement votre visite et votre adresse IP, ne dépose pas de cookie et indique ne conserver que des statistiques agrégées. Base légale : votre consentement. Sans votre accord, rien n'est chargé dans votre navigateur. Le total des visites affiché en bas de page est récupéré par notre hébergeur, sans charger GoatCounter dans votre navigateur. Vous pouvez changer d'avis à tout moment : <button type="button" class="foot-consent" data-cookies>modifier mon choix</button>.</li>
   </ul>
   <h2>Ce que nous ne faisons pas</h2>
   <p>Nous ne vendons aucune donnée et n'affichons aucune publicité, hormis le badge de notre hébergeur Netlify, imposé par son offre gratuite. Il ne dépose pas de cookie et ne vous renvoie vers Netlify que si vous cliquez dessus. La police de caractères est hébergée avec le site : votre visite n'est pas transmise à un service de polices.</p>
@@ -59,7 +59,7 @@
 <footer class="foot"><div class="in"><div class="foot-panel">
   <div class="foot-main">
     <div class="foot-brand" id="qui">
-      <a class="foot-word" href="index.html#accueil">StatPublique</a>
+      <div class="foot-head"><a class="foot-word" href="index.html#accueil">StatPublique</a><span class="foot-count" id="foot-count" hidden title="Visites des personnes qui ont accepté la mesure d'audience"><i aria-hidden="true"></i><b>0</b> <span>visites comptées</span></span></div>
       <p>Les statistiques sur la France, expliquées simplement.</p>
       <p class="foot-small">Site indépendant et non officiel, sans lien avec l'Insee.</p>
     </div>
