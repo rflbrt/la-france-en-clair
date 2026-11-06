@@ -45,8 +45,9 @@ def tag(el):
     return el.tag.rsplit("}", 1)[-1]
 
 
-def merge_insee(xml, data, upd):
-    """Fusionne une réponse de l'Insee. Renvoie le nombre d'observations lues."""
+def merge_insee(xml, data, upd, meta=None):
+    """Fusionne une réponse de l'Insee. Renvoie le nombre d'observations lues.
+    meta reçoit l'intitulé officiel, la fréquence, l'unité et la zone de chaque série."""
     count = 0
     for s in ET.fromstring(xml).iter():
         if tag(s) != "Series":
@@ -54,6 +55,8 @@ def merge_insee(xml, data, upd):
         sid = s.get("IDBANK")
         if s.get("LAST_UPDATE"):
             upd[sid] = s.get("LAST_UPDATE")
+        if meta is not None and s.get("TITLE_FR"):
+            meta[sid] = {"t": s.get("TITLE_FR"), "f": s.get("FREQ", ""), "u": s.get("UNIT_MEASURE", ""), "m": s.get("UNIT_MULT", "0"), "z": s.get("REF_AREA", "")}
         cur = dict((p, v) for p, v in data.get(sid, []))
         for o in s.iter():
             if tag(o) != "Obs":
@@ -106,6 +109,8 @@ def main():
     pos = {l.split(" ")[1]: n for n, l in enumerate(lines) if l.startswith("var ")}
     before_data, before_upd = read_var(lines[pos["DATA"]]), read_var(lines[pos["UPD"]])
     data, upd = json.loads(json.dumps(before_data)), dict(before_upd)
+    before_meta = read_var(lines[pos["META"]]) if "META" in pos else {}
+    meta = json.loads(json.dumps(before_meta))
 
     # Insee : tout ou rien, comme le navigateur
     ids = [k for k in data if k.isdigit()]
@@ -113,7 +118,7 @@ def main():
     try:
         for i in range(0, len(ids), BATCH):
             url = INSEE_API + "+".join(ids[i:i + BATCH]) + f"?lastNObservations={LAST_OBS}"
-            total += merge_insee(get(url, "application/xml"), data, upd)
+            total += merge_insee(get(url, "application/xml"), data, upd, meta)
     except Exception as err:
         print(f"ABANDON : Insee injoignable ou réponse illisible ({err}).")
         return 1
@@ -138,7 +143,7 @@ def main():
         return 1
     print(f"Eurostat : {len(es) - len(failed)} sur {len(es)} actualisés.")
 
-    if data == before_data and upd == before_upd:
+    if data == before_data and upd == before_upd and meta == before_meta:
         print("Aucun changement.")
         return 0
 
@@ -148,6 +153,11 @@ def main():
     now = datetime.now(ZoneInfo("Europe/Paris"))
     lines[pos["DATA"]] = write_var("DATA", data)
     lines[pos["UPD"]] = write_var("UPD", upd)
+    if "META" in pos:
+        lines[pos["META"]] = write_var("META", meta)
+    else:
+        lines.insert(pos["UPD"] + 1, write_var("META", meta))
+        pos = {l.split(" ")[1]: n for n, l in enumerate(lines) if l.startswith("var ")}
     lines[pos["SAVED_ON"]] = write_var("SAVED_ON", f"{now.day} {MONTHS[now.month - 1]} {now.year}")
     data_path.write_text("\n".join(lines), encoding="utf-8")
 

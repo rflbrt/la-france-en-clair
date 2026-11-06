@@ -105,6 +105,11 @@ def main():
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text(html, encoding="utf-8")
             changed += 1
+        if p.get("csv"):
+            csv_path = path.parent / "donnees.csv"
+            if not csv_path.exists() or csv_path.read_bytes() != p["csv"].encode("utf-8"):
+                with open(csv_path, "w", encoding="utf-8", newline="") as f:
+                    f.write(p["csv"])
         keep.add(path.parent)
         dates[SITE + p["url"]] = old.get(SITE + p["url"], today) if same else today
     # Un chiffre retiré du site perd sa page.

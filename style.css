@@ -118,6 +118,16 @@ h1, h2, h3 { margin: 0; font-weight: 500; letter-spacing: -.03em; line-height: 1
 .chart-note { margin: 0; color: var(--muted); font-size: .8rem; }
 .chart-values summary { color: var(--muted); font-size: .84rem; cursor: pointer; }
 .chart-values .scroll { max-height: 260px; overflow: auto; margin-block-start: 8px; }
+.chart-tech .tech { margin-block-start: 8px; font-size: .84rem; }
+.chart-tech h4 { margin: 12px 0 4px; font-size: .86rem; }
+.tech-dl { display: grid; grid-template-columns: minmax(120px, 34%) 1fr; gap: 4px 12px; margin: 0; }
+.tech-dl dt { color: var(--muted); }
+.tech-dl dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+.tech-dl code, .chiffre-page code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .92em; }
+.tech .cite { margin: 12px 0 0; color: var(--muted); overflow-wrap: anywhere; }
+.tech .cite b { color: var(--ink); margin-inline-end: 4px; }
+.chart-tools { display: flex; flex-wrap: wrap; gap: 8px; margin-block-start: 10px; }
+@media (max-width: 520px) { .tech-dl { grid-template-columns: 1fr; } .tech-dl dd { margin-block-end: 6px; } }
 .chart-table { font-size: .84rem; }
 
 /* Pourquoi et Qui sommes-nous */

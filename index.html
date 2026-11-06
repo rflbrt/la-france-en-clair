@@ -5,28 +5,28 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 <title>StatPublique : statistiques publiques sur la France, chiffre par chiffre</title>
-<meta name="description" content="Dette, emploi, prix, immigration, retraites : les statistiques publiques sur la France, expliquées simplement, avec leur source et leur historique.">
+<meta name="description" content="Les séries de la statistique publique française prêtes pour l'analyse : identifiants Insee et Eurostat, définitions officielles, glissements annuels, historique complet et données en CSV.">
 <meta name="google-site-verification" content="G2gVvVFQSQ5ZP6DUV8XcVy-JH-IPBe3LdkGM7Yk0DTI" />
 <link rel="canonical" href="https://statpublique.netlify.app/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:site_name" content="StatPublique">
 <meta property="og:title" content="StatPublique : statistiques publiques sur la France, chiffre par chiffre">
-<meta property="og:description" content="Dette, emploi, prix, immigration, retraites : les statistiques publiques sur la France, expliquées simplement, avec leur source et leur historique.">
+<meta property="og:description" content="Les séries de la statistique publique française prêtes pour l'analyse : identifiants Insee et Eurostat, définitions officielles, glissements annuels, historique complet et données en CSV.">
 <meta property="og:url" content="https://statpublique.netlify.app/">
 <meta property="og:image" content="https://statpublique.netlify.app/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="StatPublique : mieux comprendre la France, chiffre par chiffre.">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "StatPublique", "alternateName": ["Stat Publique", "Stat Public"], "url": "https://statpublique.netlify.app/", "inLanguage": "fr", "description": "Les statistiques publiques sur la France, expliquées simplement, avec leur source et leur historique."}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "StatPublique", "alternateName": ["Stat Publique", "Stat Public"], "url": "https://statpublique.netlify.app/", "inLanguage": "fr", "description": "Les séries de la statistique publique française prêtes pour l'analyse : identifiants Insee et Eurostat, définitions officielles, glissements annuels, historique complet et données en CSV."}</script>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#FFFFFF">
-<link rel="stylesheet" href="style.css?v=51">
-<script src="data.js?v=48" defer></script>
-<script src="app.js?v=49" defer></script>
+<link rel="stylesheet" href="style.css?v=52">
+<script src="data.js?v=49" defer></script>
+<script src="app.js?v=50" defer></script>
 <script src="ask.js?v=51" defer></script>
 <script src="site.js?v=49" defer></script>
 </head>
@@ -55,7 +55,7 @@
   <div class="top">
     <section class="hero">
       <h1>Mieux comprendre la&nbsp;France, chiffre par chiffre.</h1>
-      <p>StatPublique réunit les statistiques publiques sur la France : dette, emploi, prix, immigration, retraites. Un chiffre entendu quelque part ? Vérifiez-le ici, à la source.</p>
+      <p>Insee, Eurostat, Drees, Banque de France, ministère de l'Intérieur : chaque chiffre avec son identifiant de série, sa définition officielle, son historique complet, ses glissements annuels et ses données en CSV. Lu directement dans les API publiques.</p>
       <div class="find">
         <div class="search" id="search" role="search">
           <label class="vh" for="q">Rechercher un chiffre</label>
@@ -88,7 +88,7 @@
 
     <section class="stage" id="stage" aria-label="Chiffres par thème">
       <nav class="tabs" aria-label="Thèmes"><div id="tabs"></div></nav>
-      <p class="hint">Choisissez un thème, puis un chiffre pour voir son historique et comparer deux points.</p>
+      <p class="hint">Choisissez un thème, puis un chiffre : historique, calcul sur un an ou d'une période à l'autre, fiche technique, données en CSV et citation.</p>
       <div id="panels">
         <section class="panel" data-panel="essentiel"><div class="bento" id="bento-essentiel"></div></section>
         <section class="panel" data-panel="comparer" aria-label="Comparer" hidden>
@@ -150,6 +150,7 @@
             <div class="cmp-head">
               <h2>D'où viennent les chiffres</h2>
               <p>La plupart des chiffres viennent de l'Insee, sous Licence Ouverte 2.0. Les chiffres connectés sont cités ainsi : Insee, BDM, avec la date d'extraction indiquée sur chaque graphique.</p>
+              <p><button type="button" class="cmp-toggle" id="src-csv">Télécharger toutes les séries (CSV)</button></p>
               <p>Les autres viennent d'organismes publics français : le ministère de l'Intérieur, la Drees et la Banque de France. Les comparaisons avec l'Union européenne viennent d'Eurostat, l'office statistique européen. Chaque tuile nomme sa source.</p>
             </div>
             <ul class="src-steps">

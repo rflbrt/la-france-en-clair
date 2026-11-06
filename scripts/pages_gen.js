@@ -17,7 +17,7 @@ var SEO = {
   population: { t: "Population de la France" },
   naissances: { t: "Nombre de naissances en France" },
   deces: { t: "Nombre de décès en France" },
-  etrangers: { t: "Nombre d'étrangers en France" },
+  etrangers: { t: "Nombre d'étrangers en France", q: "Qui est considéré comme étranger ?", d: "Un étranger est une personne qui réside en France et ne possède pas la nationalité française, soit qu'elle possède une autre nationalité (à titre exclusif), soit qu'elle n'en ait aucune (c'est le cas des personnes apatrides). Les personnes de nationalité française possédant une autre nationalité (ou plusieurs) sont considérées en France comme françaises. Un étranger n'est pas forcément immigré, il peut être né en France (les mineurs notamment).", u: "https://www.insee.fr/fr/metadonnees/definition/c1198" },
   emploi: { t: "Nombre de salariés du privé en France" }
 };
 function slug(s) { return plainText(s).replace(/ /g, "-"); }
@@ -67,7 +67,7 @@ Object.keys(THEMES).forEach(function (theme) {
     if (i.tool) return;
     var h = headline(i);
     if (!h.f || h.f === "–") return;
-    all.push({ i: i, theme: theme, slug: slug(i.n), title: pageTitle(i) });
+    all.push({ i: i, theme: theme, slug: i.slug || slug(i.n), title: pageTitle(i) });
   });
 });
 var bySlug = {};
@@ -88,7 +88,8 @@ var pages = all.map(function (p) {
   var seo = SEO[i.key];
   if (seo && seo.d) body += "<h2>" + esc(seo.q) + "</h2><p>" + nb(seo.d) + ' <a href="' + esc(seo.u) + '" rel="noopener">Définition de l\'Insee</a>.</p>';
   if (group && group.note) body += "<h2>À savoir</h2><p>" + esc(group.note) + "</p>";
-  var ev = view && data ? evolution(i, view, data) : [];
+  // noEvo : pas d'évolution calculée quand les années ne sont pas comparables (rupture de série, estimations provisoires).
+  var ev = view && data && !i.noEvo ? evolution(i, view, data) : [];
   if (ev.length) {
     body += "<h2>Évolution</h2><ul>" + ev.map(function (x) { return "<li>" + esc(x[0]) + " : <b>" + nb(x[1]) + "</b> (depuis " + nb(x[2].charAt(0).toLowerCase() + x[2].slice(1)) + ")</li>"; }).join("") + "</ul><p class=\"note\">Calcul de StatPublique à partir des chiffres de la source.</p>";
   }
@@ -106,6 +107,15 @@ var pages = all.map(function (p) {
   });
   if (detail.length) body += "<h2>Dans le détail</h2><div class=\"table\"><table><thead><tr><th scope=\"col\">Chiffre</th><th scope=\"col\">Valeur</th><th scope=\"col\">Période</th></tr></thead><tbody>" + detail.join("") + "</tbody></table></div>";
   if (i.staticRows) body += "<h2>Dans le détail</h2><div class=\"table\"><table><tbody>" + i.staticRows.map(function (r) { return "<tr><td>" + esc(r[0]) + "</td><td>" + nb(r[2]) + "</td></tr>"; }).join("") + "</tbody></table></div>";
+  // Pour l'analyse : fiche technique de chaque série et historique complet en CSV (point-virgule, virgule décimale).
+  var csv = null;
+  if (i.views && data && data.length) {
+    body += "<h2>Fiche technique</h2>" + techHtml(i, i.views[0], true).replace('<p class="cite">', '<p class="cite note">');
+    var csvRows = [["graphique", "serie", "identifiant", "unite", "periode", "valeur"]];
+    i.views.forEach(function (v) { v.lines.forEach(function (l) { lineData(l).forEach(function (q) { csvRows.push([v.label, l.name, l.id || "", v.unit || "", q[0], csvNum(q[1])]); }); }); });
+    csv = "\ufeff" + csvRows.map(function (r) { return r.map(csvCell).join(";"); }).join("\r\n") + "\r\n";
+    body += '<p><a class="cta" href="donnees.csv" download>Télécharger l\'historique complet (CSV)</a></p>';
+  }
   body += "<h2>Source</h2><p>" + esc(src) + " : <a href=\"" + esc(srcUrl) + "\" rel=\"noopener\">voir les données d'origine</a>. Chiffres publics repris tels quels, sauf les calculs signalés.</p>";
   body += '<p><a class="cta" href="/#' + p.theme + '">Voir le graphique et comparer ce chiffre</a></p>';
   var extra = { dette: ["dette-par-habitant", "Dette publique par habitant en France"], population: ["dette-par-habitant", "Dette publique par habitant en France"], pib: ["pib-par-habitant", "PIB par habitant en France"], chomage: ["population-active", "Population active en France"], chomeurs: ["population-active", "Population active en France"] }[i.key];
@@ -117,7 +127,8 @@ var pages = all.map(function (p) {
     "@context": "https://schema.org", "@type": "Dataset", name: p.title, description: desc, url: url(p), inLanguage: "fr",
     spatialCoverage: { "@type": "Place", name: "France" },
     creator: { "@type": "Organization", name: src }, isBasedOn: srcUrl,
-    temporalCoverage: data && data.length ? data[0][0].slice(0, 4) + "/" + data[data.length - 1][0].slice(0, 4) : undefined
+    temporalCoverage: data && data.length ? data[0][0].slice(0, 4) + "/" + data[data.length - 1][0].slice(0, 4) : undefined,
+    distribution: csv ? [{ "@type": "DataDownload", encodingFormat: "text/csv", contentUrl: url(p) + "donnees.csv" }] : undefined
   }, {
     "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
       { "@type": "ListItem", position: 1, name: "Accueil", item: SITE + "/" },
@@ -125,7 +136,7 @@ var pages = all.map(function (p) {
       { "@type": "ListItem", position: 3, name: p.title, item: url(p) }
     ]
   }];
-  return { path: "chiffres/" + p.slug + "/index.html", url: "/chiffres/" + p.slug + "/", title: (isEu(i) ? p.title : p.title + " : " + value + (when && data ? " (" + when.charAt(0).toLowerCase() + when.slice(1) + ")" : "")).replace(/[  ]/g, " ") + " | StatPublique", desc: desc, body: body, ld: ld };
+  return { csv: csv, path: "chiffres/" + p.slug + "/index.html", url: "/chiffres/" + p.slug + "/", title: (isEu(i) ? p.title : p.title + " : " + value + (when && data ? " (" + when.charAt(0).toLowerCase() + when.slice(1) + ")" : "")).replace(/[  ]/g, " ") + " | StatPublique", desc: desc, body: body, ld: ld };
 });
 function theme_id(t) { return "theme-" + t; }
 // Chiffres très recherchés que le site calcule à partir de deux séries.

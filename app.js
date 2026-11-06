@@ -16,49 +16,49 @@ var THEMES = {
     title: "Finances publiques",
     items: [
       { key: "dette", n: "Dette publique", u: "Md €", dec: 1, url: "2830301", c: "w6", h: 1, dark: 1, spark: 1,
-        s: function (g) { return "Soit " + num(g("010777608"), 1) + " % du PIB et environ " + num(Math.round(g("010777616") * 1e9 / g("001641586") / 1000) * 1000, 0) + " € par habitant (calcul de ce site)."; },
+        s: function (g) { return "Soit " + num(g("010777608"), 1) + " % du PIB et environ " + num(Math.round(g("010777616") * 1e9 / g("001641586") / 1000) * 1000, 0) + " € par habitant (calcul de ce site). Au sens de Maastricht : État, Sécurité sociale et collectivités, sans ce qu'elles se doivent entre elles."; },
         views: [V("En milliards d'euros", [L("010777616", "Dette publique")], "Md €", 1), V("En % du PIB", [L("010777608", "Dette publique")], "%", 1)] },
-      { key: "taux", n: "Taux d'emprunt à 10 ans", u: PCT, dec: 2, o: "Eurostat", href: "https://ec.europa.eu/eurostat/databrowser/view/irt_lt_mcby_a/default/table?lang=fr", ds: "irt_lt_mcby_a", wp: "Moyenne ", c: "w6", h: 1, spark: 1, s: "Rendement moyen des emprunts d'État à long terme sur l'année.", views: [V("France et UE", [L("ES_taux_FR", "France"), L("ES_taux_EU", "UE à 27")], "%", 2)] },
-      { key: "deficit", n: "Déficit public", f: "5,1 %", w: "2025", url: "8997691", s: "du PIB, soit 152,5 Md €.", views: [V("En % du PIB", [P("deficit", "Déficit public")], "%", 1)] },
-      { key: "depenses", n: "Dépenses publiques", f: "57,3 %", w: "2025", url: "8997691", s: "du PIB, soit 1 714,2 Md €.", views: [V("En % du PIB", [P("depenses", "Dépenses publiques")], "%", 1)] },
-      { key: "recettes", n: "Recettes publiques", f: "52,2 %", w: "2025", url: "8997691", s: "du PIB, soit 1 561,7 Md €.", views: [V("En % du PIB", [P("recettes", "Recettes publiques")], "%", 1)] },
-      { key: "po", n: "Prélèvements obligatoires", f: "43,6 %", w: "2025", url: "8997691", s: "du PIB : impôts et cotisations.", views: [V("En % du PIB", [P("po", "Prélèvements obligatoires")], "%", 1)] },
-      { key: "interets", n: "Charge d'intérêts", u: "Md €", dec: 1, url: "2830301", s: "Ce que coûte la dette, sur les 4 derniers trimestres (calcul de ce site).",
+      { key: "taux", n: "Taux d'emprunt à 10 ans", u: PCT, dec: 2, o: "Eurostat", href: "https://ec.europa.eu/eurostat/databrowser/view/irt_lt_mcby_a/default/table?lang=fr", ds: "irt_lt_mcby_a", wp: "Moyenne ", c: "w6", h: 1, spark: 1, s: "Rendement moyen des emprunts d'État à long terme sur l'année. Il ne s'applique qu'aux nouveaux emprunts : la dette déjà empruntée garde son taux d'origine.", views: [V("France et UE", [L("ES_taux_FR", "France"), L("ES_taux_EU", "UE à 27")], "%", 2)] },
+      { key: "deficit", n: "Déficit public", f: "5,1 %", w: "2025", url: "8997691", s: "du PIB, soit 152,5 Md € : ce qui manque à l'État, à la Sécurité sociale et aux collectivités pour couvrir leurs dépenses de l'année. Les règles européennes visent 3 % au plus.", views: [V("En % du PIB", [P("deficit", "Déficit public")], "%", 1)] },
+      { key: "depenses", n: "Dépenses publiques", f: "57,3 %", w: "2025", url: "8997691", s: "du PIB, soit 1 714,2 Md €. Plus de la moitié va à la protection sociale (retraites, famille, chômage) et à la santé. Une grande partie est reversée aux ménages sous forme de prestations.", views: [V("En % du PIB", [P("depenses", "Dépenses publiques")], "%", 1)] },
+      { key: "recettes", n: "Recettes publiques", f: "52,2 %", w: "2025", url: "8997691", s: "du PIB, soit 1 561,7 Md € : impôts, cotisations sociales et autres revenus (ventes, loyers, dividendes).", views: [V("En % du PIB", [P("recettes", "Recettes publiques")], "%", 1)] },
+      { key: "po", n: "Prélèvements obligatoires", f: "43,6 %", w: "2025", url: "8997691", s: "du PIB : impôts et cotisations sociales. L'un des taux les plus élevés d'Europe, car retraites et santé y sont surtout financées par des prélèvements publics.", views: [V("En % du PIB", [P("po", "Prélèvements obligatoires")], "%", 1)] },
+      { key: "interets", n: "Charge d'intérêts", u: "Md €", dec: 1, url: "2830301", s: "Ce que coûte la dette, sur les 4 derniers trimestres (calcul de ce site). Mesure des comptes nationaux, pour toutes les administrations : elle diffère de la « charge de la dette » du seul budget de l'État.",
         views: [V("Sur 4 trimestres", [L("011794584", "Charge d'intérêts", { tf: "sum4", x: 1e-3 })], "Md €", 1)] }
     ]
   },
   activite: {
     title: "Activité",
     items: [
-      { key: "pib", n: "PIB", u: "Md €", dec: 1, url: "2830547", c: "w6", h: 1, dark: 1, spark: 1, s: "La richesse produite en un an.",
+      { key: "pib", n: "PIB", u: "Md €", dec: 1, url: "2830547", c: "w6", h: 1, dark: 1, spark: 1, s: "La valeur de tout ce qui est produit en France en un an, en euros courants : sa hausse mêle croissance réelle et hausse des prix.",
         views: [V("En milliards d'euros", [L("011779992", "PIB", { x: 1e-3 })], "Md €", 1), V("Évolution en volume", [L("011779995", "Évolution du PIB")], "%", 1)] },
-      { key: "croissance", n: "Croissance", u: PCT, dec: 1, signed: 1, url: "2830547", s: "Évolution du PIB sur un trimestre.", views: [V("Sur un trimestre", [L("011794844", "Croissance")], "%", 1)] },
-      { key: "climat", n: "Climat des affaires", dec: 1, url: "2107840", s: "Sa moyenne de long terme est de 100.", d: { n: 1, kind: "pt", word: "en un mois" }, views: [V("Tous secteurs", [L("001565530", "Climat des affaires")], "", 1)] },
-      { key: "emploi", n: "Emploi salarié privé", u: "M", dec: 1, url: "2107840", s: "salariés dans le secteur privé.", d: { n: 4, kind: "pct", word: "en un an" }, views: [V("En millions", [L("001796854", "Emploi salarié privé", { x: 1e-3 })], "M", 2)] },
-      { key: "creations", n: "Créations d'entreprises", dec: 0, url: "9078876", s: "en un mois.", d: { n: 12, kind: "pct", word: "en un an" }, views: [V("Par mois", [L("010755538", "Créations d'entreprises")], "", 0)] },
-      { key: "defaillances", n: "Défaillances d'entreprises", dec: 0, url: "2109644", s: "sur douze mois.", d: { n: 12, kind: "pct", word: "en un an" }, views: [V("Sur douze mois", [L("001656101", "Défaillances")], "", 0)] },
-      { key: "conso", n: "Consommation des ménages", u: PCT, dec: 1, signed: 1, url: "2830547", s: "en volume, sur un trimestre (calcul de ce site).", views: [V("Sur un trimestre", [L("011794864", "Consommation", { tf: "qoq" })], "%", 1), V("En milliards d'euros", [L("011794864", "Consommation", { x: 1e-3 })], "Md €", 1)] },
-      { key: "fbcf", n: "Investissement", u: PCT, dec: 1, signed: 1, url: "2830547", s: "en volume, sur un trimestre (calcul de ce site).", views: [V("Sur un trimestre", [L("011794884", "Investissement", { tf: "qoq" })], "%", 1), V("En milliards d'euros", [L("011794884", "Investissement", { x: 1e-3 })], "Md €", 1)] }
+      { key: "croissance", n: "Croissance", u: PCT, dec: 1, signed: 1, url: "2830547", s: "Évolution du PIB sur un trimestre, par rapport au trimestre précédent, hors hausse des prix. Ce n'est pas la croissance sur un an.", views: [V("Sur un trimestre", [L("011794844", "Croissance")], "%", 1)] },
+      { key: "climat", n: "Climat des affaires", dec: 1, url: "2107840", s: "Sa moyenne de long terme est de 100 : au-dessus, les chefs d'entreprise jugent la conjoncture meilleure que d'habitude. C'est une enquête d'opinion, pas une mesure de l'activité.", d: { n: 1, kind: "pt", word: "en un mois" }, views: [V("Tous secteurs", [L("001565530", "Climat des affaires")], "", 1)] },
+      { key: "emploi", n: "Emploi salarié privé", u: "M", dec: 1, url: "2107840", s: "salariés dans le secteur privé. Ni les fonctionnaires ni les indépendants ne sont comptés.", d: { n: 4, kind: "pct", word: "en un an" }, views: [V("En millions", [L("001796854", "Emploi salarié privé", { x: 1e-3 })], "M", 2)] },
+      { key: "creations", n: "Créations d'entreprises", dec: 0, url: "9078876", s: "en un mois. Près de deux tiers sont des micro-entreprises : une création ne veut pas dire un emploi créé.", d: { n: 12, kind: "pct", word: "en un an" }, views: [V("Par mois", [L("010755538", "Créations d'entreprises")], "", 0)] },
+      { key: "defaillances", n: "Défaillances d'entreprises", dec: 0, url: "2109644", s: "sur douze mois : entreprises placées en redressement ou en liquidation judiciaire. Une partie est ensuite reprise ou redressée.", d: { n: 12, kind: "pct", word: "en un an" }, views: [V("Sur douze mois", [L("001656101", "Défaillances")], "", 0)] },
+      { key: "conso", n: "Consommation des ménages", u: PCT, dec: 1, signed: 1, url: "2830547", s: "en volume (hors hausse des prix), sur un trimestre (calcul de ce site).", views: [V("Sur un trimestre", [L("011794864", "Consommation", { tf: "qoq" })], "%", 1), V("En milliards d'euros", [L("011794864", "Consommation", { x: 1e-3 })], "Md €", 1)] },
+      { key: "fbcf", n: "Investissement", u: PCT, dec: 1, signed: 1, url: "2830547", s: "en volume, sur un trimestre (calcul de ce site) : achats de bâtiments, de logements, de machines et de logiciels par les entreprises, les ménages et les administrations.", views: [V("Sur un trimestre", [L("011794884", "Investissement", { tf: "qoq" })], "%", 1), V("En milliards d'euros", [L("011794884", "Investissement", { x: 1e-3 })], "Md €", 1)] }
     ]
   },
   menages: {
     title: "Vie des ménages",
     items: [
-      { key: "inflation", n: "Inflation", u: PCT, dec: 1, url: "2107840", c: "w6", h: 1, dark: 1, spark: 1, s: "Évolution des prix sur un an. Le dernier mois est une estimation provisoire.", d: { n: 1, kind: "pt", word: "en un mois" },
+      { key: "inflation", n: "Inflation", u: PCT, dec: 1, url: "2107840", c: "w6", h: 1, dark: 1, spark: 1, s: "Évolution des prix à la consommation sur un an. Une inflation qui baisse veut dire que les prix montent moins vite, pas qu'ils baissent. Le dernier mois est une estimation provisoire.", d: { n: 1, kind: "pt", word: "en un mois" },
         views: [V("Sur un an", [L("011814632", "Inflation")], "%", 1)] },
-      { key: "chomage", n: "Chômage", u: PCT, dec: 1, url: "2107840", c: "w6", h: 1, rows: 1, rowsView: 1, s: "de la population active.",
+      { key: "chomage", n: "Chômage", u: PCT, dec: 1, url: "2107840", c: "w6", h: 1, rows: 1, rowsView: 1, s: "de la population active (personnes en emploi ou au chômage), au sens du BIT : sans travail, disponible et en recherche active.",
         views: [V("Ensemble", [L("001688527", "Chômage")], "%", 1), V("Par âge", [L("001688537", "15-24 ans"), L("001688529", "25-49 ans"), L("001688531", "50 ans ou plus")], "%", 1), V("Par sexe", [L("001688535", "Hommes"), L("001688533", "Femmes")], "%", 1)] },
-      { key: "chomeurs", n: "Nombre de chômeurs", u: "M", dec: 1, url: "2107840", s: "au sens du BIT.", d: { n: 1, kind: "k", word: "en un trimestre" }, views: [V("En millions", [L("011818555", "Chômeurs", { x: 1e-3 })], "M", 2)] },
-      { key: "tauxemploi", n: "Taux d'emploi", u: PCT, dec: 1, url: "2107840", s: "des 15-64 ans.", d: { n: 4, kind: "pt", word: "en un an" }, views: [V("15-64 ans", [L("011818676", "Taux d'emploi")], "%", 1)] },
-      { key: "achat", n: "Pouvoir d'achat", u: PCT, dec: 1, signed: 1, url: "2830547", s: "de l'ensemble des ménages, sur un trimestre (calcul de ce site).", views: [V("Sur un trimestre", [L("011818868", "Pouvoir d'achat", { tf: "qoq" })], "%", 1)] },
-      { key: "epargne", n: "Épargne des ménages", u: PCT, dec: 1, url: "2830547", s: "du revenu disponible (calcul de ce site).", views: [V("Part du revenu", [L("011794755", "Épargne", { tf: "share", of: "011794746" })], "%", 1)] },
-      { key: "confiance", n: "Confiance des ménages", dec: 0, url: "2107840", s: "Sa moyenne de long terme est de 100.", d: { n: 1, kind: "pt", word: "en un mois" }, views: [V("Indicateur", [L("001587668", "Confiance")], "", 0)] },
-      { key: "logement", n: "Prix des logements anciens", u: PCT, dec: 1, signed: 1, url: "2830547", s: "sur un an (calcul de ce site).", views: [V("Sur un an", [L("010567118", "Prix", { tf: "yoy4" })], "%", 1), V("Indice", [L("010567118", "Prix (100 en 2015)")], "", 1)] },
-      { key: "salaire", n: "Salaire net moyen", f: "2 797 €", w: "2025", url: "9087193", c: "w6", s: "par mois en équivalent temps plein, secteur privé. Le graphique suit le salaire médian, seul historique publié.",
+      { key: "chomeurs", n: "Nombre de chômeurs", u: "M", dec: 1, url: "2107840", s: "au sens du BIT. Les inscrits à France Travail sont comptés autrement, et sont plus nombreux.", d: { n: 1, kind: "k", word: "en un trimestre" }, views: [V("En millions", [L("011818555", "Chômeurs", { x: 1e-3 })], "M", 2)] },
+      { key: "tauxemploi", n: "Taux d'emploi", u: PCT, dec: 1, url: "2107840", s: "des 15-64 ans : la part de cette tranche d'âge qui a un emploi, même à temps partiel. Il complète le chômage, qui ne compte pas ceux qui ne cherchent pas.", d: { n: 4, kind: "pt", word: "en un an" }, views: [V("15-64 ans", [L("011818676", "Taux d'emploi")], "%", 1)] },
+      { key: "achat", n: "Pouvoir d'achat", u: PCT, dec: 1, signed: 1, url: "2830547", s: "de l'ensemble des ménages, sur un trimestre (calcul de ce site) : le revenu disponible corrigé de la hausse des prix. Par personne, l'évolution est un peu plus faible, car la population augmente.", views: [V("Sur un trimestre", [L("011818868", "Pouvoir d'achat", { tf: "qoq" })], "%", 1)] },
+      { key: "epargne", n: "Épargne des ménages", u: PCT, dec: 1, url: "2830547", s: "du revenu disponible (calcul de ce site) : la part du revenu qui n'est pas consommée. Elle comprend l'argent placé, mais aussi l'achat de logements et le remboursement des emprunts.", views: [V("Part du revenu", [L("011794755", "Épargne", { tf: "share", of: "011794746" })], "%", 1)] },
+      { key: "confiance", n: "Confiance des ménages", dec: 0, url: "2107840", s: "Sa moyenne de long terme est de 100 : en dessous, les ménages sont plus pessimistes que d'habitude. C'est une enquête d'opinion.", d: { n: 1, kind: "pt", word: "en un mois" }, views: [V("Indicateur", [L("001587668", "Confiance")], "", 0)] },
+      { key: "logement", n: "Prix des logements anciens", u: PCT, dec: 1, signed: 1, url: "2830547", s: "sur un an (calcul de ce site), pour les logements anciens de toute la France hors Mayotte.", views: [V("Sur un an", [L("010567118", "Prix", { tf: "yoy4" })], "%", 1), V("Indice", [L("010567118", "Prix (100 en 2015)")], "", 1)] },
+      { key: "salaire", n: "Salaire net moyen", f: "2 797 €", w: "2025", url: "9087193", c: "w6", s: "par mois en équivalent temps plein (un temps partiel compté comme un temps plein), secteur privé. La moitié des salariés gagne moins de 2 238 € : la moyenne est tirée vers le haut par les hauts salaires. Le graphique suit le salaire médian, seul historique publié.",
         staticRows: [["Cadres", 4711, "4 711 €"], ["Prof. intermédiaires", 2681, "2 681 €"], ["Ouvriers", 2092, "2 092 €"], ["Employés", 1979, "1 979 €"]],
         views: [V("Salaire médian, indice 100 en 1996", [P("salaire", "Salaire médian")], "", 1)] },
-      { key: "niveau", n: "Niveau de vie médian", f: "2 228 €", w: "2024, métropole", url: "9019316", s: "par mois. Le seuil de pauvreté, à 60 % de ce montant, est de 1 337 €.", views: [V("Indice 100 en 2008", [P("niveau", "Niveau de vie médian")], "", 1)] },
-      { key: "pauvrete", n: "Taux de pauvreté", f: "15,4 %", w: "2024, métropole", url: "9019316", c: "w6", s: "9,8 millions de personnes.",
+      { key: "niveau", n: "Niveau de vie médian", f: "2 228 €", w: "2024, métropole", url: "9019316", s: "par mois pour une personne seule. Le niveau de vie est le revenu après impôts et prestations, ajusté à la taille du ménage. La moitié de la population vit avec moins. Le seuil de pauvreté, à 60 % de ce montant, est de 1 337 €.", views: [V("Indice 100 en 2008", [P("niveau", "Niveau de vie médian")], "", 1)] },
+      { key: "pauvrete", n: "Taux de pauvreté", f: "15,4 %", w: "2024, métropole", url: "9019316", c: "w6", s: "9,8 millions de personnes vivent sous le seuil de 1 337 € par mois, fixé à 60 % du niveau de vie médian. C'est une pauvreté relative, qui dépend du revenu des autres. Les sans-abri et les personnes en institution ne sont pas comptés.",
         staticRows: [["Chômeurs", 36.1, "36,1 %"], ["Moins de 18 ans", 22.4, "22,4 %"], ["Retraités", 10.4, "10,4 %"], ["Personnes en emploi", 8.5, "8,5 %"]],
         views: [V("Ensemble", [P("pauvrete", "Taux de pauvreté")], "%", 1)] }
     ]
@@ -66,67 +66,67 @@ var THEMES = {
   population: {
     title: "Population",
     items: [
-      { key: "population", n: "Population", wp: "1er janvier ", u: "M", dec: 1, url: "8719824", c: "w6", h: 1, dark: 1, spark: 1, s: "d'habitants au 1er janvier.", d: { n: 1, kind: "pct", word: "en un an" }, views: [V("En millions", [L("001641586", "Population", { x: 1e-6 })], "M", 2)] },
+      { key: "population", n: "Population", wp: "1er janvier ", u: "M", dec: 1, url: "8719824", c: "w6", h: 1, dark: 1, spark: 1, s: "d'habitants au 1er janvier, Mayotte comprise. Estimation de l'Insee à partir du recensement.", d: { n: 1, kind: "pct", word: "en un an" }, views: [V("En millions", [L("001641586", "Population", { x: 1e-6 })], "M", 2)] },
       { key: "ages", n: "60 ans ou plus", wp: "1er janvier ", u: PCT, dec: 1, url: "8719824", c: "w6", h: 1, rows: 1, s: "Part de la population par âge (calcul de ce site).", views: [V("Par âge", [L("001686817", "60 ans ou plus", { tf: "share", of: "001641586" }), L("001686814", "20-59 ans", { tf: "share", of: "001641586" }), L("001686816", "Moins de 20 ans", { tf: "share", of: "001641586" })], "%", 1)] },
       { key: "naissances", n: "Naissances", dec: 0, url: "8719824", s: "sur l'année, chiffre provisoire.", d: { n: 1, kind: "pct", word: "en un an" }, views: [V("Par an", [L("001641590", "Naissances")], "", 0)] },
       { key: "deces", n: "Décès", dec: 0, url: "8719824", s: "sur l'année, chiffre provisoire.", d: { n: 1, kind: "pct", word: "en un an" }, views: [V("Par an", [L("001641592", "Décès")], "", 0)] },
-      { key: "soldenat", n: "Solde naturel", dec: 0, signed: 1, url: "8719824", s: "Naissances moins décès, selon le bilan démographique.", views: [V("Par an", [L("001641585", "Solde naturel")], "", 0)] },
-      { key: "soldemig", n: "Solde migratoire", dec: 0, signed: 1, url: "8719824", s: "Arrivées moins départs, estimation.", views: [V("Par an", [L("001641597", "Solde migratoire")], "", 0)] },
-      { key: "fecondite", n: "Fécondité", dec: 2, url: "8719824", s: "enfant par femme.", views: [V("Par femme", [L("001686832", "Fécondité", { x: 0.01 })], "", 2)] },
-      { key: "ev", n: "Espérance de vie à la naissance", u: "ans", dec: 1, url: "8719824", c: "w6", rows: 1, s: "pour les femmes.", views: [V("En années", [L("001686961", "Femmes"), L("001686956", "Hommes")], "ans", 1)] }
+      { key: "soldenat", n: "Solde naturel", dec: 0, signed: 1, url: "8719824", s: "Naissances moins décès, selon le bilan démographique. Négatif : plus de décès que de naissances.", views: [V("Par an", [L("001641585", "Solde naturel")], "", 0)] },
+      { key: "soldemig", noEvo: 1, n: "Solde migratoire", dec: 0, signed: 1, url: "8719824", s: "Arrivées moins départs, Français compris, estimation. Pour les trois dernières années, l'Insee retient une estimation provisoire, identique d'une année à l'autre : le chiffre définitif arrive environ trois ans plus tard.", views: [V("Par an", [L("001641597", "Solde migratoire")], "", 0)] },
+      { key: "fecondite", n: "Fécondité", dec: 2, url: "8719824", s: "enfant par femme. Il en faut environ 2,1 pour que les générations se renouvellent sans immigration.", views: [V("Par femme", [L("001686832", "Fécondité", { x: 0.01 })], "", 2)] },
+      { key: "ev", n: "Espérance de vie à la naissance", u: "ans", dec: 1, url: "8719824", c: "w6", rows: 1, s: "pour les femmes. C'est l'âge moyen au décès si la mortalité de l'année restait la même toute la vie.", views: [V("En années", [L("001686961", "Femmes"), L("001686956", "Hommes")], "ans", 1)] }
     ]
   },
   retraites: {
     title: "Retraites",
     items: [
-      { key: "pension", n: "Pension moyenne", f: "1 752 €", u: "bruts par mois", w: "Fin 2024", o: "Drees", href: "https://drees.solidarites-sante.gouv.fr/sites/default/files/2026-10/RR2026%20-%20Fiche%2005%20-%20Le%20niveau%20des%20pensions.pdf", c: "w6", h: 1, dark: 1, spark: 1, s: "Pension de droit direct, retraités vivant en France, soit 1 626 € nets.",
+      { key: "pension", n: "Pension moyenne", f: "1 752 €", u: "bruts par mois", w: "Fin 2024", o: "Drees", href: "https://drees.solidarites-sante.gouv.fr/sites/default/files/2026-10/RR2026%20-%20Fiche%2005%20-%20Le%20niveau%20des%20pensions.pdf", c: "w6", h: 1, dark: 1, spark: 1, s: "Pension de droit direct (acquise par son propre travail), majoration pour trois enfants comprise, retraités vivant en France, soit 1 626 € nets. Sans cette majoration : 1 705 € bruts.",
         staticRows: [["Hommes", 2186, "2 186 €"], ["Femmes", 1383, "1 383 €"]],
         views: [V("Ensemble", [P("pension", "Pension moyenne")], "€", 0), V("Par sexe", [P("pensionH", "Hommes"), P("pensionF", "Femmes")], "€", 0)] },
-      { key: "pauvreret", n: "Pauvreté des retraités", f: "10,4 %", w: "2024, métropole", url: "3565856", c: "w6", s: "1,6 million de personnes.", views: [V("Retraités", [P("pauvreret", "Pauvreté des retraités")], "%", 1)] },
-      { key: "ecartpen", n: "Écart femmes-hommes", f: "36,7 %", w: "Fin 2024", o: "Drees", href: "https://drees.solidarites-sante.gouv.fr/sites/default/files/2026-10/RR2026%20-%20Fiche%2005%20-%20Le%20niveau%20des%20pensions.pdf", c: "w6", s: "Droit direct, et 24,7 % avec le droit dérivé (calcul de ce site).", views: [V("Écart", [P("ecartdir", "Droit direct"), P("ecartder", "Avec droit dérivé")], "%", 1)] }
+      { key: "pauvreret", n: "Pauvreté des retraités", f: "10,4 %", w: "2024, métropole", url: "3565856", c: "w6", s: "1,6 million de personnes, au même seuil que pour toute la population (60 % du niveau de vie médian).", views: [V("Retraités", [P("pauvreret", "Pauvreté des retraités")], "%", 1)] },
+      { key: "ecartpen", n: "Écart femmes-hommes", f: "36,7 %", w: "Fin 2024", o: "Drees", href: "https://drees.solidarites-sante.gouv.fr/sites/default/files/2026-10/RR2026%20-%20Fiche%2005%20-%20Le%20niveau%20des%20pensions.pdf", c: "w6", s: "Droit direct, et 24,7 % en ajoutant les pensions de réversion (calcul de ce site).", views: [V("Écart", [P("ecartdir", "Droit direct"), P("ecartder", "Avec droit dérivé")], "%", 1)] }
     ]
   }
 };
 
 // Chiffres complémentaires, classés par catégorie.
 THEMES.finances.items.push(
-  { key: "soldeetat", n: "Solde du budget de l'État", u: "Md €", dec: 1, signed: 1, url: "2830301", s: "cumulé depuis le début de l'année.", views: [V("Cumul depuis janvier", [L("001717255", "Solde", { x: 1e-3 })], "Md €", 1)] },
-  { key: "dettenr", n: "Dette publique détenue à l'étranger", f: "58,4 %", w: "30 juin 2026", o: "Banque de France", href: "https://www.banque-france.fr/fr/statistiques/credit/emission-et-detention-de-titres-francais-2026-q2", c: "w4", s: "des titres de long terme des administrations publiques, détenus par des non-résidents." }
+  { key: "soldeetat", n: "Solde du budget de l'État", u: "Md €", dec: 1, signed: 1, url: "2830301", s: "cumulé depuis le début de l'année. Il ne couvre que l'État, pas la Sécurité sociale ni les collectivités, et se compare au même mois de l'année précédente.", views: [V("Cumul depuis janvier", [L("001717255", "Solde", { x: 1e-3 })], "Md €", 1)] },
+  { key: "dettenr", n: "Dette publique détenue à l'étranger", f: "58,4 %", w: "30 juin 2026", o: "Banque de France", href: "https://www.banque-france.fr/fr/statistiques/credit/emission-et-detention-de-titres-francais-2026-q2", c: "w4", s: "des titres de long terme des administrations publiques, détenus par des non-résidents. C'est le détenteur direct qui compte : un épargnant français passant par un fonds étranger est classé non-résident." }
 );
 THEMES.activite.items.push(
-  { key: "soldeext", n: "Solde extérieur", u: "Md €", dec: 1, signed: 1, url: "2830547", c: "w6", spark: 1, s: "biens et services, sur les 4 derniers trimestres (calcul de ce site).", views: [V("Sur 4 trimestres", [L("011794880", "Solde extérieur", { tf: "sum4", x: 1e-3 })], "Md €", 1)] },
-  { key: "partindustrie", n: "Poids de l'industrie", u: PCT, dec: 1, url: "2830547", s: "de la valeur ajoutée de l'économie (calcul de ce site).", views: [V("Part de la valeur ajoutée", [L("011794110", "Industrie", { tf: "share", of: "011794118" })], "%", 1)] },
-  { key: "ipi", n: "Production industrielle", dec: 1, url: "2830547", s: "Moyenne annuelle, indice 100 en 2021.", d: { n: 1, kind: "pct", word: "en un an" }, views: [V("Indice 100 en 2021", [L("010768655", "Production manufacturière")], "", 1)] },
-  { key: "nucleaire", n: "Part du nucléaire", u: PCT, dec: 1, url: "2830547", s: "de la consommation d'énergie primaire (calcul de ce site).", views: [V("Part de l'énergie primaire", [L("010760756", "Nucléaire", { tf: "share", of: "010760755" })], "%", 1)] },
-  { key: "enr", n: "Énergies renouvelables", u: PCT, dec: 1, url: "2830547", s: "de la consommation finale brute d'énergie.", views: [V("Part de la consommation", [L("010596107", "Énergies renouvelables")], "%", 1)] }
+  { key: "soldeext", n: "Solde extérieur", u: "Md €", dec: 1, signed: 1, url: "2830547", c: "w6", spark: 1, s: "biens et services, sur les 4 derniers trimestres (calcul de ce site). Négatif : la France achète plus à l'étranger qu'elle ne lui vend. Les douanes publient un autre chiffre, pour les seuls biens.", views: [V("Sur 4 trimestres", [L("011794880", "Solde extérieur", { tf: "sum4", x: 1e-3 })], "Md €", 1)] },
+  { key: "partindustrie", n: "Poids de l'industrie", u: PCT, dec: 1, url: "2830547", s: "de la valeur ajoutée de l'économie (calcul de ce site). L'industrie comprend ici l'énergie, l'eau et les déchets, mais pas la construction.", views: [V("Part de la valeur ajoutée", [L("011794110", "Industrie", { tf: "share", of: "011794118" })], "%", 1)] },
+  { key: "ipi", slug: "production-industrielle", n: "Production manufacturière", dec: 1, url: "2830547", s: "Moyenne annuelle, indice 100 en 2021 : volume produit par l'industrie manufacturière (les usines), sans l'énergie ni la construction.", d: { n: 1, kind: "pct", word: "en un an" }, views: [V("Indice 100 en 2021", [L("010768655", "Production manufacturière")], "", 1)] },
+  { key: "nucleaire", n: "Part du nucléaire", u: PCT, dec: 1, url: "2830547", s: "de la consommation d'énergie primaire (calcul de ce site). Par convention, on y compte la chaleur des réacteurs, environ trois fois l'électricité produite : dans la production d'électricité, la part du nucléaire est d'environ deux tiers.", views: [V("Part de l'énergie primaire", [L("010760756", "Nucléaire", { tf: "share", of: "010760755" })], "%", 1)] },
+  { key: "enr", n: "Énergies renouvelables", u: PCT, dec: 1, url: "2830547", s: "de la consommation finale brute d'énergie, la mesure des objectifs européens. Elle comprend le bois, l'hydraulique, l'éolien, le solaire, les pompes à chaleur et les biocarburants.", views: [V("Part de la consommation", [L("010596107", "Énergies renouvelables")], "%", 1)] }
 );
 THEMES.menages.items.push(
-  { key: "smic", n: "Smic horaire brut", u: "€", dec: 2, url: "2830547", s: "Montant en vigueur.", views: [V("Brut par heure", [L("000822484", "Smic horaire brut")], "€", 2)] },
-  { key: "gazole", n: "Prix du gazole", u: "€", dec: 2, url: "2830547", s: "le litre, en moyenne en métropole.", d: { n: 12, kind: "pct", word: "en un an" }, views: [V("Le litre", [L("000442588", "Gazole"), L("000849411", "Sans plomb 95")], "€", 2)] },
-  { key: "baguette", n: "Prix de la baguette", u: "€", dec: 2, url: "2830547", s: "le kilo, en moyenne en métropole.", d: { n: 12, kind: "pct", word: "en un an" }, views: [V("Le kilo", [L("000442423", "Baguette")], "€", 2)] },
-  { key: "irl", n: "Indice de référence des loyers", u: PCT, dec: 2, signed: 1, url: "2830547", s: "sur un an : il sert de plafond à la révision de la plupart des loyers du privé.", views: [V("Sur un an", [L("001515334", "IRL")], "%", 2)] },
-  { key: "medecins", n: "Médecins", dec: 0, url: "2107840", s: "généralistes et spécialistes.", views: [V("Nombre", [L("010761309", "Médecins")], "", 0)] },
-  { key: "generalistes", n: "Densité de généralistes", dec: 0, url: "2107840", s: "pour 100 000 habitants.", views: [V("Pour 100 000 habitants", [L("010761075", "Généralistes"), L("010761426", "Spécialistes")], "", 0)] },
+  { key: "smic", n: "Smic horaire brut", u: "€", dec: 2, url: "2830547", s: "Montant en vigueur, avant cotisations. Il est revalorisé au moins chaque 1er janvier, selon les prix et les salaires.", views: [V("Brut par heure", [L("000822484", "Smic horaire brut")], "€", 2)] },
+  { key: "gazole", n: "Prix du gazole", u: "€", dec: 2, url: "2830547", s: "le litre, toutes taxes comprises, en moyenne en métropole.", d: { n: 12, kind: "pct", word: "en un an" }, views: [V("Le litre", [L("000442588", "Gazole"), L("000849411", "Sans plomb 95")], "€", 2)] },
+  { key: "baguette", n: "Prix de la baguette", u: "€", dec: 2, url: "2830547", s: function (g) { return "le kilo, en moyenne en métropole, soit environ " + num(g("000442423") / 4, 2) + " € pour une baguette de 250 g (calcul de ce site)."; }, d: { n: 12, kind: "pct", word: "en un an" }, views: [V("Le kilo", [L("000442423", "Baguette")], "€", 2)] },
+  { key: "irl", n: "Indice de référence des loyers", u: PCT, dec: 2, signed: 1, url: "2830547", s: "sur un an : il sert de plafond à la révision de la plupart des loyers du privé. Il suit la moyenne sur douze mois des prix hors tabac et hors loyers.", views: [V("Sur un an", [L("001515334", "IRL")], "%", 2)] },
+  { key: "medecins", n: "Médecins", dec: 0, url: "2107840", s: "généralistes et spécialistes, en ville et à l'hôpital.", views: [V("Nombre", [L("010761309", "Médecins")], "", 0)] },
+  { key: "generalistes", n: "Densité de généralistes", dec: 0, url: "2107840", s: "pour 100 000 habitants, en moyenne sur toute la France.", views: [V("Pour 100 000 habitants", [L("010761075", "Généralistes"), L("010761426", "Spécialistes")], "", 0)] },
   { key: "patr10", n: "Patrimoine des mieux dotés", f: "48 %", u: "aux 10 % du haut", w: "Début 2024", url: "8672665", c: "w6", s: "du patrimoine brut des ménages est détenu par les 10 % les mieux dotés.", staticRows: [["1 % les mieux dotés", 15, "15 %"], ["5 % les mieux dotés", 34, "34 %"], ["10 % les mieux dotés", 48, "48 %"], ["50 % les moins dotés", 7, "7 %"]] },
-  { key: "seuilspat", n: "Combien possèdent les ménages", f: "205 100 €", u: "médiane", w: "Début 2024", url: "2388851", c: "w6", s: "de patrimoine brut : la moitié des ménages possède plus, l'autre moins.", staticRows: [["Seuil des 1 % du haut", 3020900, "3 020 900 €"], ["Seuil des 10 % du haut", 857700, "857 700 €"], ["Médiane", 205100, "205 100 €"], ["Seuil des 10 % du bas", 6200, "6 200 €"]] },
-  { key: "smicnet", n: "Smic net mensuel", u: "€", dec: 0, url: "1375188", s: "pour 35 heures par semaine, après CSG et CRDS.", views: [V("Net par mois", [L("000879878", "Smic net")], "€", 0)] },
-  { key: "rsa", n: "Allocataires du RSA", f: "1,84 M", w: "Fin 2025, provisoire", o: "Drees", href: "https://drees.solidarites-sante.gouv.fr/communique-de-presse-jeux-de-donnees/jeux-de-donnees/260227-suivi-mensuel-prestations-de-solidarite", s: "foyers, stable en un an (+0,2 %)." },
-  { key: "minima", n: "Allocataires de minima sociaux", f: "4,25 M", w: "Fin 2024", o: "Drees", href: "https://drees.solidarites-sante.gouv.fr/communique-de-presse/communique-de-presse/251204-nombre-allocataires-minima-sociaux", s: "soit 1,3 % de plus en un an." }
+  { key: "seuilspat", n: "Combien possèdent les ménages", f: "205 100 €", u: "médiane", w: "Début 2024", url: "2388851", c: "w6", s: "de patrimoine brut, sans déduire les emprunts : la moitié des ménages possède plus, l'autre moins.", staticRows: [["Seuil des 1 % du haut", 3020900, "3 020 900 €"], ["Seuil des 10 % du haut", 857700, "857 700 €"], ["Médiane", 205100, "205 100 €"], ["Seuil des 10 % du bas", 6200, "6 200 €"]] },
+  { key: "smicnet", n: "Smic net mensuel", u: "€", dec: 0, url: "1375188", s: "pour 35 heures par semaine, après cotisations sociales, CSG et CRDS, avant impôt sur le revenu.", views: [V("Net par mois", [L("000879878", "Smic net")], "€", 0)] },
+  { key: "rsa", n: "Allocataires du RSA", f: "1,84 M", w: "Fin 2025, provisoire", o: "Drees", href: "https://drees.solidarites-sante.gouv.fr/communique-de-presse-jeux-de-donnees/jeux-de-donnees/260227-suivi-mensuel-prestations-de-solidarite", s: "foyers, stable en un an (+0,2 %). Un foyer peut compter plusieurs personnes : conjoint, enfants." },
+  { key: "minima", n: "Allocataires de minima sociaux", f: "4,25 M", w: "Fin 2024", o: "Drees", href: "https://drees.solidarites-sante.gouv.fr/communique-de-presse/communique-de-presse/251204-nombre-allocataires-minima-sociaux", s: "soit 1,3 % de plus en un an. Ce sont les personnes qui touchent au moins une aide garantissant un revenu minimum : RSA, allocation aux adultes handicapés, minimum vieillesse…" }
 );
 THEMES.population.items.push(
-  { key: "immigres", n: "Immigrés", f: "7,97", u: "M", w: "2025, provisoire", url: "2381757", c: "w6", spark: 1, s: "soit 11,6 % de la population. Rupture de série en 2024 : la méthode a changé.", views: [V("En millions", [P("immigres", "Immigrés")], "M", 2), V("Part de la population", [P("immigresPart", "Immigrés")], "%", 1)] },
-  { key: "etrangers", n: "Étrangers", f: "6,30", u: "M", w: "2025, provisoire", url: "2381757", c: "w6", spark: 1, s: "soit 9,1 % de la population. Rupture de série en 2024.", views: [V("En millions", [P("etrangers", "Étrangers")], "M", 2), V("Part de la population", [P("etrangersPart", "Étrangers")], "%", 1)] },
-  { key: "entrees", n: "Immigrés entrés en France", f: "313 000", w: "2024", url: "8998082", s: "sur l'année.", views: [V("Entrées", [P("entrees", "Entrées")], "", 0)] },
-  { key: "occupation", n: "Occupation des prisons", u: PCT, dec: 1, url: "2107840", s: "au 31 décembre. Au-dessus de 100 %, il y a plus de détenus que de places.", views: [V("Taux d'occupation", [L("001779317", "Taux d'occupation")], "%", 1)] },
+  { key: "immigres", noEvo: 1, slug: "immigres", n: "Immigrés (nés à l'étranger)", f: "7,97", u: "M", w: "2025, provisoire", url: "2381757", c: "w6", spark: 1, s: "soit 11,6 % de la population. Ce sont les personnes nées étrangères dans un autre pays et venues vivre en France. Elles restent comptées même si elles sont devenues françaises. Leurs enfants nés en France ne sont pas immigrés. Rupture de série en 2024 : la méthode a changé.", views: [V("En millions", [P("immigres", "Immigrés")], "M", 2), V("Part de la population", [P("immigresPart", "Immigrés")], "%", 1)] },
+  { key: "etrangers", noEvo: 1, slug: "etrangers", n: "Étrangers (sans nationalité française)", f: "6,30", u: "M", w: "2025, provisoire", url: "2381757", c: "w6", spark: 1, s: "soit 9,1 % de la population. Ce sont les personnes qui vivent en France sans avoir la nationalité française, qu'elles soient nées à l'étranger ou en France. Une personne qui devient française n'est plus comptée. Les binationaux sont comptés comme Français. Rupture de série en 2024.", views: [V("En millions", [P("etrangers", "Étrangers")], "M", 2), V("Part de la population", [P("etrangersPart", "Étrangers")], "%", 1)] },
+  { key: "entrees", slug: "immigres-entres-en-france", n: "Immigrés entrés en France", f: "313 000", w: "2024", url: "8998082", s: "sur l'année : des personnes nées étrangères à l'étranger, arrivées pour vivre en France au moins un an. Ce sont des arrivées, pas le total des immigrés présents.", views: [V("Entrées", [P("entrees", "Entrées")], "", 0)] },
+  { key: "occupation", n: "Occupation des prisons", u: PCT, dec: 1, url: "2107840", s: "au 31 décembre. Au-dessus de 100 %, il y a plus de détenus que de places. Les maisons d'arrêt, qui accueillent les prévenus et les courtes peines, sont les plus surpeuplées.", views: [V("Taux d'occupation", [L("001779317", "Taux d'occupation")], "%", 1)] },
   { key: "homenr", n: "Homicides enregistrés", f: "975", w: "2025", o: "Ministère de l'Intérieur", href: "https://statistiques.interieur.gouv.fr/ssmsi/files/ssmsi/2026-07/Ins%C3%A9curit%C3%A9%20et%20d%C3%A9linquance%20en%202025%20-%20Bilan%20statistique%20-%20%C3%A9dition%202026%20-%20SSMSI.pdf", s: "victimes, coups mortels inclus. Stable en un an.", views: [V("Par an", [P("homEnr", "Homicides"), P("tentHom", "Tentatives")], "", 0)] },
   { key: "cambriolages", n: "Cambriolages de logements", f: "211 600", w: "2025", o: "Ministère de l'Intérieur", href: "https://statistiques.interieur.gouv.fr/ssmsi/files/ssmsi/2026-07/Ins%C3%A9curit%C3%A9%20et%20d%C3%A9linquance%20en%202025%20-%20Bilan%20statistique%20-%20%C3%A9dition%202026%20-%20SSMSI.pdf", s: "enregistrés, soit 3 % de moins en un an.", views: [V("Par an", [P("camb", "Cambriolages")], "", 0)] },
-  { key: "violphys", n: "Violences physiques", f: "472 400", w: "2025", o: "Ministère de l'Intérieur", href: "https://statistiques.interieur.gouv.fr/ssmsi/files/ssmsi/2026-07/Ins%C3%A9curit%C3%A9%20et%20d%C3%A9linquance%20en%202025%20-%20Bilan%20statistique%20-%20%C3%A9dition%202026%20-%20SSMSI.pdf", s: "victimes enregistrées, soit 5 % de plus en un an.", views: [V("Ensemble", [P("violPhys", "Ensemble")], "", 0), V("Famille ou non", [P("violFam", "Dans la famille"), P("violHors", "Hors famille")], "", 0)] },
-  { key: "violsex", n: "Violences sexuelles", f: "132 100", w: "2025", o: "Ministère de l'Intérieur", href: "https://statistiques.interieur.gouv.fr/ssmsi/files/ssmsi/2026-07/Ins%C3%A9curit%C3%A9%20et%20d%C3%A9linquance%20en%202025%20-%20Bilan%20statistique%20-%20%C3%A9dition%202026%20-%20SSMSI.pdf", s: "victimes enregistrées, soit 8 % de plus en un an.", views: [V("Par an", [P("violSex", "Violences sexuelles"), P("viols", "Viols et tentatives")], "", 0)] },
-  { key: "trafic", n: "Trafic de stupéfiants", f: "57 100", w: "2025", o: "Ministère de l'Intérieur", href: "https://statistiques.interieur.gouv.fr/ssmsi/files/ssmsi/2026-07/Ins%C3%A9curit%C3%A9%20et%20d%C3%A9linquance%20en%202025%20-%20Bilan%20statistique%20-%20%C3%A9dition%202026%20-%20SSMSI.pdf", s: "personnes mises en cause, soit 9 % de plus en un an.", views: [V("Par an", [P("trafic", "Trafic")], "", 0)] },
-  { key: "escroqueries", n: "Escroqueries", f: "448 300", w: "2025", o: "Ministère de l'Intérieur", href: "https://statistiques.interieur.gouv.fr/ssmsi/files/ssmsi/2026-07/Ins%C3%A9curit%C3%A9%20et%20d%C3%A9linquance%20en%202025%20-%20Bilan%20statistique%20-%20%C3%A9dition%202026%20-%20SSMSI.pdf", s: "victimes enregistrées, soit 7 % de plus en un an.", views: [V("Par an", [P("escro", "Escroqueries")], "", 0)] }
+  { key: "violphys", n: "Violences physiques", f: "472 400", w: "2025", o: "Ministère de l'Intérieur", href: "https://statistiques.interieur.gouv.fr/ssmsi/files/ssmsi/2026-07/Ins%C3%A9curit%C3%A9%20et%20d%C3%A9linquance%20en%202025%20-%20Bilan%20statistique%20-%20%C3%A9dition%202026%20-%20SSMSI.pdf", s: "victimes enregistrées, soit 5 % de plus en un an. Plus de la moitié (256 700) dans la famille.", views: [V("Ensemble", [P("violPhys", "Ensemble")], "", 0), V("Famille ou non", [P("violFam", "Dans la famille"), P("violHors", "Hors famille")], "", 0)] },
+  { key: "violsex", n: "Violences sexuelles", f: "132 100", w: "2025", o: "Ministère de l'Intérieur", href: "https://statistiques.interieur.gouv.fr/ssmsi/files/ssmsi/2026-07/Ins%C3%A9curit%C3%A9%20et%20d%C3%A9linquance%20en%202025%20-%20Bilan%20statistique%20-%20%C3%A9dition%202026%20-%20SSMSI.pdf", s: "victimes enregistrées, soit 8 % de plus en un an. Une partie de la hausse vient de ce que les victimes portent davantage plainte, y compris pour des faits anciens.", views: [V("Par an", [P("violSex", "Violences sexuelles"), P("viols", "Viols et tentatives")], "", 0)] },
+  { key: "trafic", n: "Trafic de stupéfiants", f: "57 100", w: "2025", o: "Ministère de l'Intérieur", href: "https://statistiques.interieur.gouv.fr/ssmsi/files/ssmsi/2026-07/Ins%C3%A9curit%C3%A9%20et%20d%C3%A9linquance%20en%202025%20-%20Bilan%20statistique%20-%20%C3%A9dition%202026%20-%20SSMSI.pdf", s: "personnes mises en cause, soit 9 % de plus en un an. Ce chiffre dépend beaucoup de l'activité des enquêteurs : plus de contrôles, plus de cas.", views: [V("Par an", [P("trafic", "Trafic")], "", 0)] },
+  { key: "escroqueries", slug: "escroqueries", n: "Escroqueries et fraudes aux moyens de paiement", f: "448 300", w: "2025", o: "Ministère de l'Intérieur", href: "https://statistiques.interieur.gouv.fr/ssmsi/files/ssmsi/2026-07/Ins%C3%A9curit%C3%A9%20et%20d%C3%A9linquance%20en%202025%20-%20Bilan%20statistique%20-%20%C3%A9dition%202026%20-%20SSMSI.pdf", s: "victimes enregistrées, soit 7 % de plus en un an.", views: [V("Par an", [P("escro", "Escroqueries")], "", 0)] }
 );
 THEMES.retraites.items.push(
-  { key: "retraitesdep", n: "Dépenses de retraite", f: "13,5 %", u: "du PIB", w: "2024", o: "Drees", href: "https://drees.solidarites-sante.gouv.fr/sites/default/files/2026-10/RR2026%20-%20Fiche%2010%20-%20Les%20masses%20financi%C3%A8res%20relatives%20aux%20pensions%20de%20retraite.pdf", c: "w6", s: "soit 395 Md €. Fin 2024, on compte 17,3 M de retraités." }
+  { key: "retraitesdep", n: "Dépenses de retraite", f: "13,5 %", u: "du PIB", w: "2024", o: "Drees", href: "https://drees.solidarites-sante.gouv.fr/sites/default/files/2026-10/RR2026%20-%20Fiche%2010%20-%20Les%20masses%20financi%C3%A8res%20relatives%20aux%20pensions%20de%20retraite.pdf", c: "w6", s: "soit 395 Md €, pensions de réversion comprises. Fin 2024, on compte 17,3 M de retraités, y compris ceux qui vivent à l'étranger." }
 );
 
 // Eurostat : la France, et la moyenne de l'Union européenne quand elle existe.
@@ -145,36 +145,36 @@ function E(o) {
 }
 var EUROSTAT = {
   finances: [
-    E({ key: "esdette", id: "dette", n: "Dette, comparaison européenne", u: PCT, dec: 1, s: "du PIB.", cmp: 1, label: "En % du PIB", c: "w6", spark: 1 }),
+    E({ key: "esdette", id: "dette", n: "Dette, comparaison européenne", u: PCT, dec: 1, s: "du PIB, en fin d'année. Chiffre annuel d'Eurostat : il peut différer du dernier chiffre trimestriel de l'Insee.", cmp: 1, label: "En % du PIB", c: "w6", spark: 1 }),
     E({ key: "esdeficit", id: "deficit", n: "Solde public, comparaison européenne", u: PCT, dec: 1, signed: 1, s: "du PIB. Négatif : un déficit.", cmp: 1, label: "En % du PIB", c: "w4" }),
-    E({ key: "esdefense", id: "cdef", n: "Dépenses de défense", u: PCT, dec: 1, s: "du PIB, toutes administrations.", cmp: 1, label: "En % du PIB", c: "w4" }),
-    { key: "esfonctions", n: "Où va la dépense publique", u: "% du PIB, protection sociale", dec: 1, o: "Eurostat", href: ES_VIEW + "gov_10a_exp/default/table?lang=fr", ds: "gov_10a_exp", c: "w6", rows: 1, s: "Principales fonctions, toutes administrations.",
+    E({ key: "esdefense", id: "cdef", n: "Dépenses de défense", u: PCT, dec: 1, s: "du PIB, toutes administrations. L'OTAN compte plus large (pensions des militaires notamment) : son chiffre est plus élevé.", cmp: 1, label: "En % du PIB", c: "w4" }),
+    { key: "esfonctions", n: "Où va la dépense publique", u: "% du PIB, protection sociale", dec: 1, o: "Eurostat", href: ES_VIEW + "gov_10a_exp/default/table?lang=fr", ds: "gov_10a_exp", c: "w6", rows: 1, s: "Principales fonctions, toutes administrations. Les services généraux comprennent les intérêts de la dette.",
       views: [V("France", [L("ES_cprot_FR", "Protection sociale"), L("ES_csante_FR", "Santé"), L("ES_cserv_FR", "Services généraux"), L("ES_cedu_FR", "Éducation"), L("ES_ceco_FR", "Économie"), L("ES_cdef_FR", "Défense")], "%", 1),
         V("Protection sociale, France et UE", [L("ES_cprot_FR", "France"), L("ES_cprot_EU", "UE à 27")], "%", 1),
         V("Santé, France et UE", [L("ES_csante_FR", "France"), L("ES_csante_EU", "UE à 27")], "%", 1),
         V("Éducation, France et UE", [L("ES_cedu_FR", "France"), L("ES_cedu_EU", "UE à 27")], "%", 1)] }
   ],
   activite: [
-    E({ key: "espibhab", id: "pibhab", n: "PIB par habitant, comparaison européenne", dec: 0, s: "en pouvoir d'achat. 100 correspond à la moyenne de l'UE.", label: "Base 100 pour l'UE à 27", c: "w6" })
+    E({ key: "espibhab", id: "pibhab", n: "PIB par habitant, comparaison européenne", dec: 0, s: "en pouvoir d'achat, c'est-à-dire corrigé des différences de prix entre pays. 100 correspond à la moyenne de l'UE.", label: "Base 100 pour l'UE à 27", c: "w6" })
   ],
   menages: [
-    E({ key: "eselec", id: "elec", n: "Prix de l'électricité", u: "€", dec: 3, s: "le kWh, taxes comprises, pour une consommation moyenne.", cmp: 1, label: "Le kWh", c: "w4" }),
-    E({ key: "eschom", id: "chom", n: "Chômage, comparaison européenne", u: PCT, dec: 1, s: "des 15-74 ans actifs.", cmp: 1, label: "Taux de chômage", c: "w6" })
+    E({ key: "eselec", id: "elec", n: "Prix de l'électricité", u: "€", dec: 3, s: "le kWh, taxes comprises, pour une consommation moyenne (2 500 à 5 000 kWh par an).", cmp: 1, label: "Le kWh", c: "w4" }),
+    E({ key: "eschom", id: "chom", n: "Chômage, comparaison européenne", u: PCT, dec: 1, s: "des 15-74 ans actifs. Chiffre annuel : il peut différer du dernier chiffre trimestriel de l'Insee.", cmp: 1, label: "Taux de chômage", c: "w6" })
   ],
   population: [
-    { key: "esasile", n: "Demandes d'asile", dec: 0, o: "Eurostat", href: ES_VIEW + "migr_asyappctza/default/table?lang=fr", ds: "migr_asyappctza", s: "toutes demandes, sur l'année. Voir aussi les premières demandes dans l'historique.", views: [V("Par an", [L("ES_asile_FR", "Toutes demandes"), L("ES_asile1_FR", "Premières demandes")], "", 0)] },
-    E({ key: "espermis", id: "permis", n: "Premiers titres de séjour", dec: 0, s: "délivrés sur l'année, hors citoyens de l'UE.", label: "Par an", c: "w6", spark: 1 }),
-    { key: "esordres", n: "Ordres de quitter le territoire", dec: 0, o: "Eurostat", href: ES_VIEW + "migr_eiord/default/table?lang=fr", ds: "migr_eiord", s: "prononcés sur l'année. L'historique les compare aux départs.", views: [V("Par an", [L("ES_ordres_FR", "Ordres"), L("ES_retours_FR", "Départs")], "", 0)] }
+    { key: "esasile", n: "Demandes d'asile", dec: 0, o: "Eurostat", href: ES_VIEW + "migr_asyappctza/default/table?lang=fr", ds: "migr_asyappctza", s: "toutes demandes sur l'année, réexamens compris. Voir aussi les premières demandes dans l'historique. Une demande n'est pas un accord : une grande partie est rejetée.", views: [V("Par an", [L("ES_asile_FR", "Toutes demandes"), L("ES_asile1_FR", "Premières demandes")], "", 0)] },
+    E({ key: "espermis", id: "permis", n: "Premiers titres de séjour", dec: 0, s: "délivrés sur l'année, hors citoyens de l'UE, pour au moins 3 mois, étudiants compris. Le ministère de l'Intérieur publie un chiffre proche, calculé autrement.", label: "Par an", c: "w6", spark: 1 }),
+    { key: "esordres", n: "Ordres de quitter le territoire", dec: 0, o: "Eurostat", href: ES_VIEW + "migr_eiord/default/table?lang=fr", ds: "migr_eiord", s: "prononcés sur l'année. L'historique les compare aux départs. Les départs d'une année ne viennent pas tous des ordres de la même année : le rapport entre les deux n'est qu'un ordre de grandeur.", views: [V("Par an", [L("ES_ordres_FR", "Ordres"), L("ES_retours_FR", "Départs")], "", 0)] }
   ],
   retraites: [
-    E({ key: "esemp", id: "emp5564", n: "Emploi des 55-64 ans", u: PCT, dec: 1, s: "de cette tranche d'âge travaille.", cmp: 1, label: "Taux d'emploi", c: "w6" })
+    E({ key: "esemp", id: "emp5564", n: "Emploi des 55-64 ans", u: PCT, dec: 1, s: "de cette tranche d'âge travaille. Il dépend beaucoup de l'âge de départ à la retraite.", cmp: 1, label: "Taux d'emploi", c: "w6" })
   ]
 };
 Object.keys(EUROSTAT).forEach(function (t) { EUROSTAT[t].forEach(function (i) { THEMES[t].items.push(i); }); });
 THEMES.finances.groups = [{"title": "Dette et déficit", "note": "Le déficit est ce qui manque sur une année. La dette est le total accumulé. Le budget de l'État n'est qu'une partie des comptes publics, qui comprennent aussi la Sécurité sociale et les collectivités.", "keys": ["dette", "taux", "deficit", "interets", "soldeetat", "dettenr|", "esdeficit|w6", "esdette"]}, {"title": "Dépenses et recettes", "note": "Les dépenses et les recettes couvrent l'État, la Sécurité sociale et les collectivités.", "keys": ["depenses|w4", "recettes|w4", "po|w4", "esfonctions", "esdefense|w6"]}];
 THEMES.activite.groups = [{"title": "Croissance et entreprises", "note": "Le PIB mesure ce qui est produit dans le pays sur une période.", "keys": ["pib", "croissance", "climat", "emploi", "creations", "defaillances", "conso", "fbcf", "espibhab|"]}, {"title": "Industrie et commerce extérieur", "note": "Le solde extérieur compare ce que la France vend et achète à l'étranger, biens et services compris.", "keys": ["soldeext", "partindustrie", "ipi"]}, {"title": "Énergie", "note": "L'énergie primaire est celle des ressources, avant transformation. La consommation finale est celle des utilisateurs.", "keys": ["nucleaire|w6", "enr|w6"]}];
-THEMES.menages.groups = [{"title": "Prix et pouvoir d'achat", "note": "L'inflation mesure la hausse moyenne des prix. Elle peut ralentir alors que les prix continuent de monter.", "keys": ["inflation", "achat", "epargne", "confiance", "gazole", "baguette|w6", "eselec|w6", "sommehier"]}, {"title": "Emploi et salaires", "note": "Le taux de chômage au sens du BIT n'est pas le nombre d'inscrits à France Travail.", "keys": ["chomage", "chomeurs", "tauxemploi", "salaire", "smic", "smicnet", "eschom"]}, {"title": "Patrimoine, revenus et pauvreté", "note": "Le patrimoine est ce qu'un ménage possède, le revenu ce qu'il gagne chaque année. Le patrimoine brut ne déduit pas les dettes. Seule la moitié des 10 % les mieux dotés en patrimoine fait partie des 10 % aux plus hauts revenus.", "keys": ["patr10", "seuilspat", "niveau|w6", "pauvrete", "rsa|w6", "minima|w6"]}, {"title": "Logement", "note": "L'indice de référence des loyers plafonne la révision de la plupart des loyers du privé.", "keys": ["logement|w6", "irl|w6"]}, {"title": "Santé", "note": "La densité de médecins rapporte leur nombre à la population. Elle ne dit rien de leur répartition sur le territoire.", "keys": ["medecins|w6", "generalistes|w6"]}];
-THEMES.population.groups = [{"title": "Démographie", "note": "Le solde naturel compare les naissances et les décès. Le solde migratoire compare les arrivées et les départs.", "keys": ["population", "ages", "naissances", "deces", "soldenat", "soldemig", "fecondite|w6", "ev"]}, {"title": "Immigration", "note": "Un immigré est né étranger à l'étranger, et le reste même s'il devient français. Un étranger n'a pas la nationalité française, même s'il est né en France. Les deux chiffres ne se recouvrent pas.", "keys": ["immigres|w4", "etrangers|w4", "entrees|w4", "espermis", "esasile", "esordres"]}, {"title": "Sécurité et justice", "note": "Les chiffres enregistrés par la police et la gendarmerie mesurent les faits constatés, pas tous ceux commis : une partie n'est jamais signalée.", "keys": ["homenr", "cambriolages", "violphys", "violsex", "trafic|w4", "escroqueries|w4", "occupation|w4"]}];
+THEMES.menages.groups = [{"title": "Prix et pouvoir d'achat", "note": "L'inflation mesure la hausse moyenne des prix. Elle peut ralentir alors que les prix continuent de monter.", "keys": ["inflation", "achat", "epargne", "confiance", "gazole", "baguette|w6", "eselec|w6", "sommehier"]}, {"title": "Emploi et salaires", "note": "Le taux de chômage au sens du BIT n'est pas le nombre d'inscrits à France Travail.", "keys": ["chomage", "chomeurs", "tauxemploi", "salaire", "smic", "smicnet", "eschom"]}, {"title": "Patrimoine, revenus et pauvreté", "note": "Le patrimoine est ce qu'un ménage possède, le revenu ce qu'il gagne chaque année. Le patrimoine brut ne déduit pas les dettes. Il est bien plus concentré que le revenu : les 10 % les mieux dotés ont près de la moitié du patrimoine, quand les 10 % les plus aisés ont un quart des niveaux de vie.", "keys": ["patr10", "seuilspat", "niveau|w6", "pauvrete", "rsa|w6", "minima|w6"]}, {"title": "Logement", "note": "L'indice de référence des loyers plafonne la révision de la plupart des loyers du privé.", "keys": ["logement|w6", "irl|w6"]}, {"title": "Santé", "note": "La densité de médecins rapporte leur nombre à la population. Elle ne dit rien de leur répartition sur le territoire.", "keys": ["medecins|w6", "generalistes|w6"]}];
+THEMES.population.groups = [{"title": "Démographie", "note": "Le solde naturel compare les naissances et les décès. Le solde migratoire compare les arrivées et les départs.", "keys": ["population", "ages", "naissances", "deces", "soldenat", "soldemig", "fecondite|w6", "ev"]}, {"title": "Immigration", "note": "Un immigré est né étranger à l'étranger, et le reste même s'il devient français. Un étranger n'a pas la nationalité française, même s'il est né en France. Les deux chiffres ne s'additionnent pas : un immigré resté étranger est compté dans les deux. Les enfants d'immigrés nés en France (descendants d'immigrés) ne sont dans aucun des deux s'ils sont Français.", "keys": ["immigres|w4", "etrangers|w4", "entrees|w4", "espermis", "esasile", "esordres"]}, {"title": "Sécurité et justice", "note": "Les chiffres enregistrés par la police et la gendarmerie mesurent les faits constatés, pas tous ceux commis : une partie n'est jamais signalée.", "keys": ["homenr", "cambriolages", "violphys", "violsex", "trafic|w4", "escroqueries|w4", "occupation|w4"]}];
 var PRICE_ID = "010605954";
 function priceYear(y) {
   var d = DATA[PRICE_ID] || [];
@@ -187,7 +187,7 @@ function parseNumber(s) {
 }
 // Écart, évolution et multiplicateur entre deux valeurs. Pour un taux en %, seul l'écart en points a du sens.
 function gapCells(a, b, unit, dec) {
-  var isRate = unit === "%", u = unit ? " " + unit : "", cells = [];
+  var isRate = unit === "%" || unit === "pt", u = unit ? " " + unit : "", cells = [];
   if (isRate) {
     var pts = b - a;
     cells.push(["Écart", signed(pts, dec) + " point" + (Math.abs(pts) >= 2 ? "s" : "")]);
@@ -204,7 +204,7 @@ function cellsHtml(cells) {
   return cells.map(function (c) { return "<span><small>" + esc(c[0]) + "</small><b>" + nb(c[1]) + "</b></span>"; }).join("");
 }
 function drawPicked() {
-  var box = chart.el.querySelector(".picked"), view = chart.item.views[chart.view], dec = view.dec, unit = view.unit, u = unit ? " " + unit : "", g = chart.geo;
+  var box = chart.el.querySelector(".picked"), view = effView(), dec = view.dec, unit = view.unit, u = unit ? " " + unit : "", g = chart.geo;
   var count = {};
   g.lines.forEach(function (l) { l.shown.forEach(function (p) { count[p[0]] = 1; }); });
   if (Object.keys(count).length < 2) { box.hidden = true; return; }
@@ -355,6 +355,7 @@ function mergeXml(text) {
   Array.prototype.forEach.call(doc.getElementsByTagNameNS("*", "Series"), function (s) {
     var id = s.getAttribute("IDBANK"), cur = {};
     if (s.getAttribute("LAST_UPDATE")) UPD[id] = s.getAttribute("LAST_UPDATE");
+    if (s.getAttribute("TITLE_FR") && typeof META !== "undefined") META[id] = { t: s.getAttribute("TITLE_FR"), f: s.getAttribute("FREQ") || "", u: s.getAttribute("UNIT_MEASURE") || "", m: s.getAttribute("UNIT_MULT") || "0", z: s.getAttribute("REF_AREA") || "" };
     (DATA[id] || []).forEach(function (p) { cur[p[0]] = p[1]; });
     Array.prototype.forEach.call(s.getElementsByTagNameNS("*", "Obs"), function (o) {
       var v = o.getAttribute("OBS_VALUE");
@@ -468,11 +469,122 @@ function tile(i, cls, isHome) {
   var c = cls !== undefined ? cls : (i.c || "") + (i.h ? " h2" : ""), compact = isHome && !/h2/.test(c);
   var delta = deltaText(i, h);
   return '<article class="t ' + c + (can ? " can" : "") + '" data-key="' + i.key + '">' +
-    '<span class="k"><a class="k-link" href="/chiffres/' + plainText(i.n).replace(/ /g, "-") + '/">' + esc(i.n) + '</a></span><span class="v">' + nb(h.f) + (h.u && h.f.indexOf(h.u) < 0 ? " <small>" + esc(h.u) + "</small>" : "") + "</span>" +
+    '<span class="k"><a class="k-link" href="/chiffres/' + pageSlug(i) + '/">' + esc(i.n) + '</a></span><span class="v">' + nb(h.f) + (h.u && h.f.indexOf(h.u) < 0 ? " <small>" + esc(h.u) + "</small>" : "") + "</span>" +
     (s ? '<span class="s">' + nb(s) + "</span>" : "") + (delta ? '<span class="p">' + nb(delta) + "</span>" : "") +
     (i.spark && can && !compact ? spark(i) : "") + (compact ? "" : vizRows(i)) +
     '<span class="foot-t"><a class="src" href="' + sourceUrl(i) + '">' + esc(i.o || "Insee") + ", " + nb(h.w.charAt(0).toLowerCase() + h.w.slice(1)) + "</a>" +
     (can ? '<button class="more" type="button" aria-expanded="false">Historique <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></button>' : "") + "</span></article>";
+}
+
+// --- Pour l'analyse : fiche technique, calculs, données et citation
+function pageSlug(i) { return i.slug || plainText(i.n).replace(/ /g, "-"); }
+var FREQ_FR = { A: "Annuelle", T: "Trimestrielle", Q: "Trimestrielle", M: "Mensuelle", S: "Semestrielle", B: "Bimestrielle" };
+var UNIT_FR = { EUROS: "euros", EUROS_COURANTS: "euros courants", POURCENT: "%", INDIVIDUS: "personnes", UNITE: "unités", SO: "sans unité (indice ou solde)", TWH: "TWh", ANNEES: "années", ENFANTS_NES_VIVANTS: "enfants pour 100 femmes", NOMBRE_100_PLACES: "détenus pour 100 places", NOMBRE: "nombre" };
+var MULT_FR = { "3": "milliers", "6": "millions", "9": "milliards" };
+var TF_FR = { sum4: "somme des 4 derniers trimestres", sum12: "somme des 12 derniers mois", qoq: "évolution par rapport à la période précédente, en %", yoy4: "évolution sur 4 trimestres, en %", share: "part dans une autre série, en %" };
+function frDate(s) { var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(s || ""); return m ? m[3] + "/" + m[2] + "/" + m[1] : ""; }
+function calcPoints(view) { var u = view.unit || ""; return u === "%" || u.indexOf("%") === 0; }
+function calcOk(view) { return !view.lines.some(function (l) { return l.tf === "qoq" || l.tf === "yoy4"; }); }
+// yoy : même période un an avant ; pop : période précédente. En points pour un taux, en % sinon.
+function calcData(d, view, calc) {
+  if (!calc) return d;
+  var pts = calcPoints(view), out = [], at = {};
+  function step(a, b) { return pts ? b - a : a ? (b / a - 1) * 100 : NaN; }
+  if (calc === "pop") { for (var n = 1; n < d.length; n++) out.push([d[n][0], step(d[n - 1][1], d[n][1])]); }
+  else {
+    d.forEach(function (p) { at[Math.round(periodTime(p[0]) * 120)] = p[1]; });
+    d.forEach(function (p) { var q = at[Math.round((periodTime(p[0]) - 1) * 120)]; if (q !== undefined) out.push([p[0], step(q, p[1])]); });
+  }
+  return out.filter(function (p) { return isFinite(p[1]); });
+}
+function calcView(view, calc) {
+  if (!calc) return view;
+  var pts = calcPoints(view);
+  return { label: view.label + (calc === "yoy" ? ", sur un an" : ", d'une période à l'autre"), lines: view.lines, unit: pts ? "pt" : "%", dec: pts ? Math.max(1, view.dec) : 1 };
+}
+function effView() { var v = chart.item.views[chart.view]; return calcView(v, calcOk(v) ? chart.calc : ""); }
+function esKey(id) { return id.slice(3).replace(/_(FR|EU)$/, ""); }
+function techRows(i, l) {
+  var rows = [], d = lineData(l), m;
+  if (l.id && l.id.indexOf("ES_") === 0) {
+    var q = ES[esKey(l.id)] || ["", ""];
+    rows.push(["Source", "Eurostat"]);
+    rows.push(["Jeu de données", '<a href="' + ES_VIEW + q[0] + '/default/table?lang=fr" rel="noopener">' + esc(q[0]) + "</a>"]);
+    if (q[1]) rows.push(["Filtres", "<code>" + esc(q[1]) + "</code>"]);
+    rows.push(["Zone", /_EU$/.test(l.id) ? "Union européenne à 27 (EU27_2020)" : "France"]);
+    rows.push(["API", '<a href="' + ES_API + q[0] + "?" + (q[1] ? q[1] + "&" : "") + "geo=" + (/_EU$/.test(l.id) ? "EU27_2020" : "FR") + '&format=JSON" rel="noopener">JSON-stat</a>']);
+  } else if (l.id) {
+    m = (typeof META !== "undefined" && META[l.id]) || {};
+    rows.push(["Source", "Insee, Banque de données macroéconomiques (BDM)"]);
+    rows.push(["Identifiant (idbank)", '<a href="' + INSEE + "serie/" + l.id + '" rel="noopener"><code>' + l.id + "</code></a>"]);
+    if (m.t) rows.push(["Intitulé officiel", esc(m.t)]);
+    if (m.f) rows.push(["Fréquence", FREQ_FR[m.f] || esc(m.f)]);
+    if (m.u) rows.push(["Unité de la source", esc((MULT_FR[m.m] ? MULT_FR[m.m] + " d'" : "") + (UNIT_FR[m.u] || m.u.toLowerCase()))]);
+    rows.push(["API", '<a href="' + API + l.id + '" rel="noopener">SDMX</a>']);
+    if (l.of) rows.push(["Dénominateur", '<a href="' + INSEE + "serie/" + l.of + '" rel="noopener"><code>' + l.of + "</code></a>" + (typeof META !== "undefined" && META[l.of] ? " " + esc(META[l.of].t) : "")]);
+  } else {
+    rows.push(["Source", esc(i.o || "Insee")]);
+    rows.push(["Publication", '<a href="' + sourceUrl(i) + '" rel="noopener">page d\'origine</a>']);
+    rows.push(["Saisie", "historique relevé dans la publication, mis à jour à la main"]);
+  }
+  if (l.tf) rows.push(["Calcul de StatPublique", TF_FR[l.tf] || esc(l.tf)]);
+  if (l.x && l.x !== 1) rows.push(["Conversion", "valeur de la source × " + String(l.x).replace(".", ",")]);
+  if (l.id && UPD[l.id]) rows.push(["Mise à jour de la source", frDate(UPD[l.id])]);
+  if (d.length) rows.push(["Période couverte", esc(periodLabel(d[0][0]) + " – " + periodLabel(d[d.length - 1][0]) + " (" + d.length + " valeurs)")]);
+  return rows;
+}
+function techHtml(i, view, undated) {
+  var seen = {};
+  return view.lines.filter(function (l) { var k = l.id || l.name; if (seen[k]) return false; seen[k] = 1; return true; }).map(function (l) {
+    return (view.lines.length > 1 ? "<h4>" + esc(l.name) + "</h4>" : "") + '<dl class="tech-dl">' + techRows(i, l).map(function (r) { return "<dt>" + esc(r[0]) + "</dt><dd>" + r[1] + "</dd>"; }).join("") + "</dl>";
+  }).join("") + '<p class="cite"><b>Citer</b> ' + esc(citation(i, view, undated)) + "</p>";
+}
+function citation(i, view, undated) {
+  var l = view.lines[0], src, today = new Date().toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" });
+  if (l.id && l.id.indexOf("ES_") === 0) src = "Eurostat, jeu de données " + (ES[esKey(l.id)] || [""])[0] + (UPD[l.id] ? ", mis à jour le " + frDate(UPD[l.id]) : "");
+  else if (l.id) src = "Insee, série " + l.id + (typeof META !== "undefined" && META[l.id] ? " « " + META[l.id].t + " »" : "") + (UPD[l.id] ? ", mise à jour du " + frDate(UPD[l.id]) : "");
+  else src = (i.o || "Insee") + ", " + sourceUrl(i);
+  return src + ". Via StatPublique, statpublique.netlify.app/chiffres/" + pageSlug(i) + "/" + (undated ? "." : ", consulté le " + today + ".");
+}
+function csvNum(v) { return String(+v.toFixed(6)).replace(".", ","); }
+function csvCell(s) { s = String(s); return /[;"\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; }
+// Point-virgule et virgule décimale : s'ouvre tel quel dans un tableur français (read.csv2 en R, sep=";", decimal="," en Python).
+function saveCsv(name, rows) {
+  var blob = new Blob(["﻿" + rows.map(function (r) { return r.map(csvCell).join(";"); }).join("\r\n") + "\r\n"], { type: "text/csv;charset=utf-8" });
+  var a = document.createElement("a");
+  a.href = URL.createObjectURL(blob); a.download = name;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(function () { URL.revokeObjectURL(a.href); }, 2000);
+}
+function chartCsv() {
+  var i = chart.item, base = i.views[chart.view], calc = calcOk(base) ? chart.calc : "", view = calcView(base, calc);
+  var cols = base.lines.map(function (l) { var d = calcData(lineData(l), base, calc), at = {}; d.forEach(function (p) { at[p[0]] = p[1]; }); return { l: l, at: at, d: d }; });
+  var periods = {};
+  cols.forEach(function (c) { c.d.forEach(function (p) { periods[p[0]] = 1; }); });
+  var rows = [["periode"].concat(cols.map(function (c) { return c.l.name + (c.l.id ? " [" + c.l.id + "]" : "") + (view.unit ? " (" + view.unit + ")" : ""); }))];
+  Object.keys(periods).sort(function (a, b) { return periodTime(a) - periodTime(b); }).forEach(function (p) {
+    rows.push([p].concat(cols.map(function (c) { return c.at[p] === undefined ? "" : csvNum(c.at[p]); })));
+  });
+  saveCsv("statpublique-" + pageSlug(i) + (chart.view ? "-" + (chart.view + 1) : "") + (calc ? "-" + calc : "") + ".csv", rows);
+}
+function allCsv() {
+  var rows = [["theme", "chiffre", "graphique", "serie", "source", "identifiant", "unite", "periode", "valeur"]];
+  Object.keys(THEMES).forEach(function (t) {
+    THEMES[t].items.forEach(function (i) {
+      (i.views || []).forEach(function (v) {
+        v.lines.forEach(function (l) {
+          var src = l.id ? (l.id.indexOf("ES_") === 0 ? "Eurostat " + (ES[esKey(l.id)] || [""])[0] : "Insee BDM") : (i.o || "Insee");
+          lineData(l).forEach(function (p) { rows.push([THEMES[t].title, i.n, v.label, l.name, src, l.id || "", v.unit || "", p[0], csvNum(p[1])]); });
+        });
+      });
+    });
+  });
+  saveCsv("statpublique-toutes-les-series.csv", rows);
+}
+function copyText(text, b) {
+  var done = function () { var t = b.textContent; b.textContent = "Copié"; setTimeout(function () { b.textContent = t; }, 1600); };
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, function () { window.prompt("Copiez :", text); });
+  else window.prompt("Copiez :", text);
 }
 
 // --- Graphique d'historique, ouvert dans la tuile
@@ -493,8 +605,8 @@ function chartSummary(item, view, lines) {
 }
 function drawChart() {
   if (!chart) return;
-  var box = chart.el.querySelector(".plot"), view = chart.item.views[chart.view], W = Math.max(200, box.clientWidth), reserve = W < 480 ? chart.reserve || 0 : 0, H = (W < 480 ? 300 : 340) + reserve;
-  var lines = view.lines.map(function (l) { return { name: l.name, data: lineData(l) }; }), first = Infinity, end = -Infinity;
+  var box = chart.el.querySelector(".plot"), base = chart.item.views[chart.view], view = effView(), calc = calcOk(base) ? chart.calc : "", W = Math.max(200, box.clientWidth), reserve = W < 480 ? chart.reserve || 0 : 0, H = (W < 480 ? 300 : 340) + reserve;
+  var lines = view.lines.map(function (l) { return { name: l.name, data: calcData(lineData(l), base, calc) }; }), first = Infinity, end = -Infinity;
   lines.forEach(function (l) { l.data.forEach(function (p) { var t = periodTime(p[0]); first = Math.min(first, t); end = Math.max(end, t); }); });
   var start = chart.range ? Math.max(first, end - chart.range) : first;
   lines.forEach(function (l) { l.shown = l.data.filter(function (p) { return periodTime(p[0]) >= start; }); });
@@ -557,6 +669,9 @@ function drawChart() {
   if (cmpByKey[cmpKey]) toCmp.setAttribute("href", "#comparer=" + cmpKey + (cmpIsMoney(cmpByKey[cmpKey]) ? "&prix=1" : ""));
   var legend = chart.el.querySelector(".chart-legend");
   legend.innerHTML = lines.length > 1 ? lines.map(function (l, n) { return '<span style="--dot:' + COLORS[n] + '">' + esc(l.name) + "</span>"; }).join("") : "";
+  var calcSeg = chart.el.querySelector('[data-group="calc"]');
+  if (calcSeg) calcSeg.hidden = !calcOk(base);
+  chart.el.querySelector(".tech").innerHTML = techHtml(chart.item, base);
   var rowsEl = chart.el.querySelector(".chart-table");
   var periods = {};
   lines.forEach(function (l) { l.shown.forEach(function (p) { periods[p[0]] = 1; }); });
@@ -580,7 +695,7 @@ function hideCursor() {
 function showCursor(period) {
   var box = chart.el.querySelector(".plot"), g = chart.geo, cross = box.querySelector(".cross"), tt = box.querySelector(".tt");
   chart.cursor = period;
-  var view = chart.item.views[chart.view], x = g.X(periodTime(period));
+  var view = effView(), x = g.X(periodTime(period));
   cross.setAttribute("x1", x); cross.setAttribute("x2", x); cross.setAttribute("visibility", "visible");
   tt.hidden = false;
   tt.innerHTML = "<b>" + periodLabel(period) + "</b>" + g.lines.map(function (l) {
@@ -646,23 +761,29 @@ function openChart(t) {
   var span = 0;
   i.views[0].lines.forEach(function (l) { var d = lineData(l); if (d.length) span = Math.max(span, periodTime(d[d.length - 1][0]) - periodTime(d[0][0])); });
   el.innerHTML = '<div class="chart-bar"><div class="seg" data-group="view">' + i.views.map(function (v, n) { return '<button type="button" data-view="' + n + '" aria-pressed="' + (n === 0) + '">' + esc(v.label) + "</button>"; }).join("") + "</div>" +
-    '<div class="seg" data-group="range">' + RANGES.filter(function (r) { return !r[0] || r[0] < span; }).map(function (r) { return '<button type="button" data-range="' + r[0] + '" aria-pressed="' + (r[0] === 0) + '">' + r[1] + "</button>"; }).join("") + "</div></div>" +
+    '<div class="seg" data-group="range">' + RANGES.filter(function (r) { return !r[0] || r[0] < span; }).map(function (r) { return '<button type="button" data-range="' + r[0] + '" aria-pressed="' + (r[0] === 0) + '">' + r[1] + "</button>"; }).join("") + "</div>" +
+    '<div class="seg" data-group="calc" role="group" aria-label="Calcul"><button type="button" data-calc="" aria-pressed="true">Niveau</button><button type="button" data-calc="yoy" aria-pressed="false">Sur un an</button><button type="button" data-calc="pop" aria-pressed="false">Période à période</button></div></div>' +
     '<div class="picked" aria-live="polite"></div><div class="plot" tabindex="0" aria-label="Graphique. Flèches gauche et droite pour parcourir, Entrée pour choisir un point à comparer."></div><div class="legend chart-legend"></div>' +
     '<a class="to-compare" href="#comparer">Comparer ce chiffre <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>' +
     '<p class="chart-note">' + (i.ds ? "Source : Eurostat, jeu de données " + esc(i.ds) + ". Lu à l'ouverture du site. UE à 27 : Union européenne à 27 pays." : hasApi ? "Source : Insee, BDM, extraction du " + extractedOn + "." : "Source : " + esc(i.o || "Insee") + ", page indiquée sur la tuile. Mise à jour à la main.") + "</p>" +
-    '<details class="chart-values"><summary>Voir les valeurs</summary><div class="scroll"><table class="chart-table"></table></div></details>';
+    '<details class="chart-values"><summary>Voir les valeurs</summary><div class="scroll"><table class="chart-table"></table></div></details>' +
+    '<details class="chart-values chart-tech"><summary>Fiche technique</summary><div class="tech"></div></details>' +
+    '<div class="chart-tools"><button type="button" class="cmp-toggle" data-csv>Télécharger les données (CSV)</button><button type="button" class="cmp-toggle" data-cite>Copier la citation</button></div>';
   t.appendChild(el);
-  chart = { tile: t, el: el, item: i, view: 0, range: 0, pick: [] };
+  chart = { tile: t, el: el, item: i, view: 0, range: 0, pick: [], calc: "" };
   placeBack();
   el.addEventListener("click", function (e) {
     e.stopPropagation();
     var b = e.target.closest("button");
     if (!b) return;
     if (b.dataset.clear !== undefined) { chart.pick = []; drawChart(); return; }
+    if (b.dataset.csv !== undefined) { chartCsv(); return; }
+    if (b.dataset.cite !== undefined) { copyText(citation(chart.item, chart.item.views[chart.view]), b); return; }
     var group = b.parentNode;
     Array.prototype.forEach.call(group.children, function (c) { c.setAttribute("aria-pressed", String(c === b)); });
     if (b.dataset.view !== undefined) chart.view = +b.dataset.view;
     if (b.dataset.range !== undefined) chart.range = +b.dataset.range;
+    if (b.dataset.calc !== undefined) { chart.calc = b.dataset.calc; chart.pick = []; }
     drawChart();
   });
   var plot = el.querySelector(".plot");
@@ -1309,6 +1430,7 @@ function initSources() {
     if (!b) return;
     if (b.dataset.org) { srcFilter.org = srcFilter.org === b.dataset.org ? "" : b.dataset.org; renderSources(); document.getElementById("src-all").scrollIntoView({ block: "start" }); return; }
     if (b.dataset.goto) { goToResult({ theme: b.dataset.theme, item: itemByKey(b.dataset.goto) }); return; }
+    if (b.id === "src-csv") { allCsv(); return; }
     if (b.id === "src-reset") { srcFilter.org = ""; srcFilter.q = ""; document.getElementById("src-q").value = ""; renderSources(); }
   });
   document.getElementById("src-q").addEventListener("input", function (e) { srcFilter.q = e.target.value; renderSourceList(); });
