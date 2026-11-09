@@ -1815,8 +1815,9 @@ function backToStage() { if (isStuck()) window.scrollTo(0, window.scrollY + stag
 function activate(name) {
   closeChart();
   document.querySelector(".hint").hidden = name === "comparer" || name === "sources";
+  var here = name === "comparer" ? "#comparer" : location.hash === "#cas-usage" ? "#cas-usage" : "#accueil";
   document.querySelectorAll(".nav a").forEach(function (l) {
-    if (l.getAttribute("href") === "#" + name) l.setAttribute("aria-current", "page"); else l.removeAttribute("aria-current");
+    if (l.getAttribute("href") === here) l.setAttribute("aria-current", "page"); else l.removeAttribute("aria-current");
   });
   document.querySelectorAll("[data-panel]").forEach(function (p) { p.hidden = p.dataset.panel !== name; });
   document.querySelectorAll("[data-tab]").forEach(function (a) {
@@ -1836,6 +1837,7 @@ function route() {
   }
   if (name === "qui") { document.getElementById("qui").scrollIntoView(); return; }
   if (name === "chiffres") { stage.scrollIntoView(); return; }
+  if (name === "cas-usage" || name === "questions") { activate("essentiel"); document.getElementById(name).scrollIntoView(); return; }
   if (THEMES[name] || name === "essentiel") { activate(name); backToStage(); return; }
   activate("essentiel");
   window.scrollTo(0, 0);
@@ -1843,7 +1845,9 @@ function route() {
 window.addEventListener("hashchange", route);
 document.querySelector(".nav").addEventListener("click", function (e) {
   var l = e.target.closest("a");
-  if (l && l.getAttribute("aria-current")) { e.preventDefault(); stage.scrollIntoView(); }
+  if (!l || !l.getAttribute("aria-current")) return;
+  if (l.getAttribute("href") === "#comparer") { e.preventDefault(); stage.scrollIntoView(); }
+  else if (l.getAttribute("href") === "#accueil") window.scrollTo(0, 0);
 });
 document.getElementById("brand").addEventListener("click", function () { activate("essentiel"); window.scrollTo(0, 0); });
 
@@ -1853,7 +1857,6 @@ tabsEl.addEventListener("click", function (e) {
   if (a && a.getAttribute("aria-current") !== "true") activate(a.dataset.tab);
   if (a) backToStage();
 });
-route();
 
 // --- Actualisation : à l'ouverture, puis toutes les 30 minutes
 refresh();
@@ -1994,4 +1997,27 @@ qBox.addEventListener("click", function (e) {
   if (el) goToResult(qFound[+el.dataset.n]);
 });
 document.addEventListener("click", function (e) { if (!e.target.closest("#search")) closeResults(); });
+// Dernier appel de l'initialisation : une arrivée directe sur #comparer a besoin de l'index de recherche ci-dessus.
+route();
 initPlay();
+
+// L'assistant pèse 95 Ko et sert peu : il se charge quand on approche du bouton Demander.
+(function () {
+  var open = document.getElementById("ask-open"), state = "", pending = false;
+  function load() {
+    if (state) return;
+    state = "loading";
+    var script = document.createElement("script");
+    script.src = "ask.js?v=51";
+    script.onload = function () {
+      state = "ready";
+      open.removeEventListener("click", early);
+      if (pending) { pending = false; open.click(); }
+    };
+    script.onerror = function () { state = ""; pending = false; script.remove(); };
+    document.body.appendChild(script);
+  }
+  function early() { pending = true; load(); }
+  open.addEventListener("click", early);
+  ["pointerenter", "focus", "touchstart"].forEach(function (name) { open.addEventListener(name, load, { passive: true }); });
+})();

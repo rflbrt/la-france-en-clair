@@ -65,11 +65,13 @@ def render(p, head, foot, css, js):
 <meta property="og:image" content="{SITE}/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="StatPublique : mieux comprendre la France, chiffre par chiffre.">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#FFFFFF">
+<link rel="preload" href="/fonts/geist.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/style.css?v={css}">
 <script src="/site.js?v={js}" defer></script>
 {ld}</head>
@@ -116,7 +118,7 @@ def main():
     for d in (root / "chiffres").iterdir():
         if d.is_dir() and d not in keep:
             shutil.rmtree(d)
-    urls = [(SITE + "/", old.get(SITE + "/", today)), (SITE + "/confidentialite", old.get(SITE + "/confidentialite", today)), (SITE + "/cgu", old.get(SITE + "/cgu", today))]
+    urls = [(SITE + "/", old.get(SITE + "/", today)), (SITE + "/confidentialite", old.get(SITE + "/confidentialite", today)), (SITE + "/cgu", old.get(SITE + "/cgu", today)), (SITE + "/contact", old.get(SITE + "/contact", today))]
     urls += sorted(dates.items(), key=lambda x: (x[0].count("/"), x[0]))
     body = "".join(f"  <url><loc>{u}</loc><lastmod>{d}</lastmod></url>\n" for u, d in urls)
     sitemap.write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + body + "</urlset>\n", encoding="utf-8")

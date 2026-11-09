@@ -22,21 +22,23 @@
 <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#FFFFFF">
-<link rel="stylesheet" href="style.css?v=52">
-<script src="site.js?v=49" defer></script>
+<link rel="preload" href="fonts/geist.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="style.css?v=54">
+<script src="site.js?v=50" defer></script>
 </head>
 <body>
 
 <header class="head">
   <div class="in">
     <a class="brand" href="index.html" id="brand" aria-label="StatPublique, accueil">StatPublique</a>
-    <nav class="nav" aria-label="Menu"><a href="index.html#comparer"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M8 21h8M5 6.500h14M5 6.500 2 14a3.200 3.200 0 0 0 6 0zM19 6.500 16 14a3.200 3.200 0 0 0 6 0z"/></svg>Comparer</a></nav>
+    <nav class="nav" aria-label="Menu"><a href="index.html#accueil">Accueil</a><a href="/chiffres/">Chiffres</a><a href="index.html#comparer"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M8 21h8M5 6.500h14M5 6.500 2 14a3.200 3.200 0 0 0 6 0zM19 6.500 16 14a3.200 3.200 0 0 0 6 0z"/></svg>Comparer</a><a href="index.html#cas-usage">Cas d'usage</a><a href="/contact">Contact</a></nav>
   </div>
 </header>
 
 <main class="in doc"><article class="paper">
+  <nav class="crumbs" aria-label="Fil d'Ariane"><a href="/">Accueil</a> › Confidentialité et RGPD</nav>
   <h1>Confidentialité et RGPD</h1>
-  <p class="lede">StatPublique n'a ni compte, ni formulaire, ni publicité, hormis le badge de notre hébergeur. Voici les seules données concernées.</p>
+  <p class="lede">StatPublique n'a ni compte ni publicité, hormis le badge de notre hébergeur. Voici les seules données concernées.</p>
   <h2>Responsable du traitement</h2>
   <p>rflbrt. Contact : <a href="mailto:contactrflbrt@gmail.com">contactrflbrt@gmail.com</a>.</p>
   <h2>Données traitées</h2>
@@ -46,6 +48,7 @@
     <li><b>Record du jeu.</b> Votre meilleure série à « Plus ou moins ? » reste dans votre navigateur. Elle n'est jamais envoyée.</li>
     <li><b>Appels à Eurostat.</b> Pour les comparaisons européennes, votre navigateur interroge directement ec.europa.eu. La Commission européenne reçoit donc votre adresse IP et traite cette information en tant que responsable distinct.</li>
     <li><b>Micro de l'assistant.</b> Le micro ne s'active que si vous appuyez sur son bouton, et votre navigateur vous demande d'abord l'autorisation. Votre voix est transcrite par le service de reconnaissance de votre navigateur, qui peut l'envoyer à son éditeur, comme Google ou Apple, en tant que responsable distinct. StatPublique ne reçoit ni n'enregistre votre voix ni vos questions. Si votre navigateur ne propose pas ce service, et seulement si vous l'activez, un modèle de reconnaissance d'environ 80 Mo est téléchargé une fois depuis jsDelivr et Hugging Face, qui reçoivent donc votre adresse IP. La transcription se fait alors sur votre appareil : votre voix n'est envoyée à personne.</li>
+    <li><b>Formulaire de contact.</b> Si vous nous écrivez, nous recevons votre adresse e-mail, le sujet choisi et votre message, uniquement pour vous répondre. Base légale : intérêt légitime. Le message est acheminé par Web3Forms, service édité par Web3Creative (Inde), qui agit comme sous-traitant, reçoit votre adresse IP et peut traiter ces données hors de l'Union européenne dans le cadre des clauses contractuelles types de la Commission européenne. Web3Forms indique conserver les messages trois ans au maximum, sauf durée plus courte. Le message est ensuite transmis par e-mail à la messagerie de l'éditeur, hébergée par Google, où il est supprimé au plus tard 12 mois après le dernier échange.</li>
     <li><b>Cookies.</b> Le site ne dépose aucun cookie. Votre choix sur la mesure d'audience reste dans votre navigateur pendant six mois.</li>
     <li><b>Mesure d'audience.</b> Si vous l'acceptez, le site utilise GoatCounter pour compter les visites : pages vues, site d'origine, pays, navigateur et taille d'écran. Ce service externe reçoit techniquement votre visite et votre adresse IP, ne dépose pas de cookie et indique ne conserver que des statistiques agrégées. Base légale : votre consentement. Sans votre accord, rien n'est chargé dans votre navigateur. Le total des visites affiché en bas de page est récupéré par notre hébergeur, sans charger GoatCounter dans votre navigateur. Vous pouvez changer d'avis à tout moment : <button type="button" class="foot-consent" data-cookies>modifier mon choix</button>.</li>
   </ul>
@@ -53,7 +56,7 @@
   <p>Nous ne vendons aucune donnée et n'affichons aucune publicité, hormis le badge de notre hébergeur Netlify, imposé par son offre gratuite. Il ne dépose pas de cookie et ne vous renvoie vers Netlify que si vous cliquez dessus. La police de caractères est hébergée avec le site : votre visite n'est pas transmise à un service de polices.</p>
   <h2>Vos droits</h2>
   <p>Vous pouvez demander l'accès à vos données, leur rectification, leur effacement, leur limitation, ou vous opposer à leur traitement, en écrivant à <a href="mailto:contactrflbrt@gmail.com">contactrflbrt@gmail.com</a>. Vous pouvez aussi saisir la <a href="https://www.cnil.fr/fr/plaintes">CNIL</a>.</p>
-  <p class="lede">Dernière mise à jour : 4 novembre 2026.</p>
+  <p class="lede">Dernière mise à jour : 9 novembre 2026.</p>
 </article></main>
 
 <footer class="foot"><div class="in"><div class="foot-panel">
@@ -63,11 +66,11 @@
       <p>Les statistiques sur la France, expliquées simplement.</p>
       <p class="foot-small">Site indépendant et non officiel, sans lien avec l'Insee.</p>
     </div>
-    <nav class="foot-col" aria-label="Outils"><h2>Outils</h2><ul><li><a href="index.html#comparer">Comparer</a></li><li><a href="index.html#sources">Sources</a></li></ul></nav>
+    <nav class="foot-col" aria-label="Outils"><h2>Outils</h2><ul><li><a href="index.html#comparer">Comparer</a></li><li><a href="index.html#sources">Sources</a></li><li><a href="index.html#cas-usage">Cas d'usage</a></li><li><a href="index.html#questions">Questions fréquentes</a></li></ul></nav>
     <nav class="foot-col" aria-label="Chiffres"><h2>Chiffres</h2><ul><li><a href="/chiffres/dette-publique/">Dette publique</a></li><li><a href="/chiffres/chomage/">Chômage</a></li><li><a href="/chiffres/inflation/">Inflation</a></li><li><a href="/chiffres/population/">Population</a></li><li><a href="/chiffres/">Tous les chiffres</a></li></ul></nav>
-    <nav class="foot-col" aria-label="Informations légales"><h2>Informations</h2><ul><li><a href="confidentialite.html">Confidentialité</a></li><li><a href="cgu.html">CGU et mentions légales</a></li><li><button type="button" class="foot-consent" data-cookies>Mesure d'audience</button></li></ul></nav>
+    <nav class="foot-col" aria-label="Informations légales"><h2>Informations</h2><ul><li><a href="/contact">Contact</a></li><li><a href="confidentialite.html">Confidentialité</a></li><li><a href="cgu.html">CGU et mentions légales</a></li><li><button type="button" class="foot-consent" data-cookies>Mesure d'audience</button></li></ul></nav>
   </div>
-  <div class="foot-bottom"><ul class="foot-chips"><li>Pas d'inscription</li><li>Pas de cookies</li><li>Toutes les sources indiquées</li></ul></div>
+  <div class="foot-bottom"><ul class="foot-chips"><li>Pas d'inscription</li><li>Pas de cookies</li><li>Toutes les sources indiquées</li><li>Réponse sous 5 jours ouvrés</li></ul></div>
 </div></div></footer>
 </body>
 </html>

@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+<title>Contact : signaler une erreur ou poser une question | StatPublique</title>
+<meta name="description" content="Une erreur sur un chiffre, une question sur une source ou une idée pour le site ? Écrivez à StatPublique : réponse sous 5 jours ouvrés.">
+<link rel="canonical" href="https://statpublique.netlify.app/contact">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="StatPublique">
+<meta property="og:title" content="Contact : signaler une erreur ou poser une question | StatPublique">
+<meta property="og:description" content="Une erreur sur un chiffre, une question sur une source ou une idée pour le site ? Écrivez à StatPublique : réponse sous 5 jours ouvrés.">
+<meta property="og:url" content="https://statpublique.netlify.app/contact">
+<meta property="og:image" content="https://statpublique.netlify.app/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="StatPublique : mieux comprendre la France, chiffre par chiffre.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="preload" href="/fonts/geist.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/style.css?v=54">
+<script src="/site.js?v=50" defer></script>
+</head>
+<body>
+
+<header class="head">
+  <div class="in">
+    <a class="brand" href="/" id="brand" aria-label="StatPublique, accueil">StatPublique</a>
+    <nav class="nav" aria-label="Menu"><a href="/#accueil">Accueil</a><a href="/chiffres/">Chiffres</a><a href="/#comparer"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M8 21h8M5 6.500h14M5 6.500 2 14a3.200 3.200 0 0 0 6 0zM19 6.500 16 14a3.200 3.200 0 0 0 6 0z"/></svg>Comparer</a><a href="/#cas-usage">Cas d'usage</a><a href="/contact">Contact</a></nav>
+  </div>
+</header>
+
+<main class="in doc"><article class="paper">
+  <nav class="crumbs" aria-label="Fil d'Ariane"><a href="/">Accueil</a> › Contact</nav>
+  <h1>Contact</h1>
+  <p class="lede">Une erreur sur un chiffre, une question sur une source, une idée pour le site ? Écrivez-nous.</p>
+  <p class="promise">Réponse sous 5 jours ouvrés</p>
+  <form class="form" method="POST" action="https://api.web3forms.com/submit">
+    <!-- Clé publique Web3Forms : elle désigne seulement la boîte de réception et peut rester dans la page. -->
+    <input type="hidden" name="access_key" value="61f363fc-9df9-4dd9-9e24-ed08c4310719">
+    <input type="hidden" name="subject" value="Nouveau message depuis StatPublique">
+    <input type="hidden" name="from_name" value="StatPublique">
+    <input type="hidden" name="redirect" value="https://statpublique.netlify.app/merci">
+    <p hidden><label>Ne pas cocher cette case <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off"></label></p>
+    <label>Votre adresse e-mail
+      <input type="email" name="email" required autocomplete="email" inputmode="email">
+    </label>
+    <label>Sujet
+      <select name="sujet" required>
+        <option>Une erreur sur un chiffre</option>
+        <option>Une question sur une source</option>
+        <option>La réutilisation des données</option>
+        <option>Une idée pour le site</option>
+        <option>Autre chose</option>
+      </select>
+    </label>
+    <label>Votre message
+      <textarea name="message" required maxlength="5000"></textarea>
+    </label>
+    <p class="form-note">Votre adresse et votre message servent uniquement à vous répondre. <a href="/confidentialite">En savoir plus sur vos données</a>.</p>
+    <button type="submit" class="cta">Envoyer le message</button>
+  </form>
+  <h2>Avant d'écrire</h2>
+  <p>Vous trouverez peut-être déjà la réponse dans les <a href="/#questions">questions fréquentes</a> ou dans la rubrique <a href="/#sources">Sources</a>.</p>
+</article></main>
+
+<footer class="foot"><div class="in"><div class="foot-panel">
+  <div class="foot-main">
+    <div class="foot-brand" id="qui">
+      <div class="foot-head"><a class="foot-word" href="/#accueil">StatPublique</a><span class="foot-count" id="foot-count" hidden title="Visites des personnes qui ont accepté la mesure d'audience"><i aria-hidden="true"></i><b>0</b> <span>visites comptées</span></span></div>
+      <p>Les statistiques sur la France, expliquées simplement.</p>
+      <p class="foot-small">Site indépendant et non officiel, sans lien avec l'Insee.</p>
+    </div>
+    <nav class="foot-col" aria-label="Outils"><h2>Outils</h2><ul><li><a href="/#comparer">Comparer</a></li><li><a href="/#sources">Sources</a></li><li><a href="/#cas-usage">Cas d'usage</a></li><li><a href="/#questions">Questions fréquentes</a></li></ul></nav>
+    <nav class="foot-col" aria-label="Chiffres"><h2>Chiffres</h2><ul><li><a href="/chiffres/dette-publique/">Dette publique</a></li><li><a href="/chiffres/chomage/">Chômage</a></li><li><a href="/chiffres/inflation/">Inflation</a></li><li><a href="/chiffres/population/">Population</a></li><li><a href="/chiffres/">Tous les chiffres</a></li></ul></nav>
+    <nav class="foot-col" aria-label="Informations légales"><h2>Informations</h2><ul><li><a href="/contact">Contact</a></li><li><a href="/confidentialite.html">Confidentialité</a></li><li><a href="/cgu.html">CGU et mentions légales</a></li><li><button type="button" class="foot-consent" data-cookies>Mesure d'audience</button></li></ul></nav>
+  </div>
+  <div class="foot-bottom"><ul class="foot-chips"><li>Pas d'inscription</li><li>Pas de cookies</li><li>Toutes les sources indiquées</li><li>Réponse sous 5 jours ouvrés</li></ul></div>
+</div></div></footer>
+</body>
+</html>

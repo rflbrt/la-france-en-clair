@@ -1,4 +1,8 @@
+# Les moteurs peuvent explorer tout le site, sauf les pages et dossiers ci-dessous.
 User-agent: *
 Allow: /
+Disallow: /merci
+Disallow: /404
+Disallow: /scripts/
 
 Sitemap: https://statpublique.netlify.app/sitemap.xml

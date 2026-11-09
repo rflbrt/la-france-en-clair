@@ -89,6 +89,24 @@ var ANALYTICS = { src: "https://gc.zgo.at/count.js", attrs: { "data-goatcounter"
     } else loadCount();
   }
 
+  // Menu : signale la rubrique en cours sur les pages statiques (l'accueil est géré par app.js).
+  // Le bouton fixe des téléphones propose l'action suivante, sauf là où le visiteur est déjà en train de nous écrire.
+  var path = location.pathname.replace(/\.html$/, "");
+  var isChiffres = /^\/chiffres(\/|$)/.test(path), isContact = /^\/(contact|merci)$/.test(path);
+  var section = isChiffres ? "/chiffres/" : isContact ? "/contact" : null;
+  if (section) {
+    var current = document.querySelector('.nav a[href="' + section + '"]');
+    if (current) current.setAttribute("aria-current", "page");
+  }
+  if (!isContact) {
+    var cta = document.createElement("a");
+    cta.className = "cta m-cta";
+    cta.href = isChiffres ? "/#comparer" : "/chiffres/";
+    cta.textContent = isChiffres ? "Comparer des chiffres" : "Voir tous les chiffres";
+    document.body.appendChild(cta);
+    document.body.classList.add("has-m-cta");
+  }
+
   // L'adresse n'existe pas telle quelle dans le code de la page : les robots qui collectent les e-mails ne la trouvent pas.
   document.querySelectorAll("[data-mail-u]").forEach(function (el) {
     var addr = el.getAttribute("data-mail-u") + "@" + el.getAttribute("data-mail-d");
